@@ -7,6 +7,7 @@ import LeftNav__collapse from "../leftnav/leftNav__collapse.js";
 
 export default function LeftNav() {
   const [activeContent, setActiveContent] = useState(0);
+  const [collapseToggle, setCollapseToggle] = useState(false);
 
   function checkActiveContent(nummer) {
     if (nummer == activeContent) {
@@ -21,11 +22,29 @@ export default function LeftNav() {
   };
 
   const toggleSize = () => {
-    console.log("peepeepoopoo");
+    if (collapseToggle == false) {
+      console.log("expand leftNav");
+      setCollapseToggle(true);
+    } else {
+      console.log("collapse leftNav");
+      setCollapseToggle(false);
+    }
   };
 
+  function collapsed() {
+    if (collapseToggle == true) {
+      return styles.LeftNav__expanded;
+    } else {
+      return;
+    }
+  }
+
+  useEffect(() => {
+    collapsed();
+  }, [collapseToggle]);
+
   return (
-    <div className={styles.leftNav__body}>
+    <div className={styles.leftNav__body + " " + collapsed()}>
       <ul className={styles.LeftNav}>
         <LeftNav__item
           activeContent={activeContent}
@@ -33,6 +52,7 @@ export default function LeftNav() {
           icon={"url(vakkenIcon.svg)"}
           position={0}
           changeActive={changeActive}
+          collapsed={collapseToggle}
         />
         <LeftNav__item
           activeContent={activeContent}
@@ -40,6 +60,7 @@ export default function LeftNav() {
           icon={"url(roosterIcon.svg)"}
           position={1}
           changeActive={changeActive}
+          collapsed={collapseToggle}
         />
         <LeftNav__item
           activeContent={activeContent}
@@ -47,6 +68,7 @@ export default function LeftNav() {
           icon={"url(adminIcon.svg)"}
           position={2}
           changeActive={changeActive}
+          collapsed={collapseToggle}
         />
         <LeftNav__item
           activeContent={activeContent}
@@ -54,6 +76,7 @@ export default function LeftNav() {
           icon={"url(toolsIcon.svg)"}
           position={3}
           changeActive={changeActive}
+          collapsed={collapseToggle}
         />
         <LeftNav__item
           activeContent={activeContent}
@@ -61,6 +84,7 @@ export default function LeftNav() {
           icon={"url(accountIcon.svg)"}
           position={4}
           changeActive={changeActive}
+          collapsed={collapseToggle}
         />
 
         <LeftNav__collapse toggleSize={toggleSize} />

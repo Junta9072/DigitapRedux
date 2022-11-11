@@ -2,72 +2,15 @@
   font-family: "Inter";
   display: grid;
   grid-template-columns: 80px auto;
-}
-
-.LeftNav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 15px 0px;
-
-  height: 100vh;
-  grid-gap: 20px;
-
-  background-color: var(--white200);
-}
-
-.leftNav__item {
-  width: 60px;
-  height: 60px;
-  color: var(--blue900);
-
-  font-weight: 500;
-  text-align: center;
-  font-size: 10pt;
-
-  transition: 0.5s;
-  opacity: 0.5;
-}
-
-.leftNav__icon {
-  margin: 5px;
-  width: 50px;
-  height: 50px;
-  background-size: contain;
-  border-radius: 5px;
-
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 70%;
-  background-color: transparent;
   transition: 0.5s;
 }
 
-.active {
-  transform: scale(1.1);
-  color: var(--blue900);
-  opacity: 100%;
+/* HIERONDER EXPANDED LEFTNAV */
+.LeftNav__expanded {
+  grid-template-columns: 220px auto;
+  align-items: flex-start;
 }
 
-.active .leftNav__icon {
-  background-color: var(--white300);
-  color: var(--white200);
-}
-
-.active .leftNav__title {
-  color: var(--red600);
-}
-
-.leftNav__collapse {
-  margin-top: auto;
-}
-
-.leftNav__collapse img {
-  width: 26px;
-  height: 26px;
-}
-
-.test {
-  color: blue;
+.LeftNav__expanded .LeftNav {
+  align-items: flex-start;
 }
