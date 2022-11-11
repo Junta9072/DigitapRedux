@@ -11,6 +11,8 @@
   --red300: #f13f55;
   --red500: #ef233c;
   --red600: #d90429;
+
+  --fastTr: 0.2s ease-out;
 }
 
 html,

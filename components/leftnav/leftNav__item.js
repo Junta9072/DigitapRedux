@@ -18,15 +18,17 @@ export default function LeftNav__item(props) {
         }
         onClick={() => props.changeActive(props.position)}
       >
-        <div className={styles.leftNav__bg}>
-          <div
-            className={styles.leftNav__icon}
-            style={{ backgroundImage: props.icon }}
-            alt={props.title}
-          ></div>
-        </div>
+        <div className={styles.icon__container}>
+          <div className={styles.icon__bg}>
+            <div
+              className={styles.icon__img}
+              style={{ backgroundImage: props.icon }}
+              alt={props.title}
+            ></div>
+          </div>
 
-        <p className={styles.letNav__title}>{props.title}</p>
+          <p className={styles.icon__title}>{props.title}</p>
+        </div>
       </li>
     );
   } else {
@@ -37,14 +39,17 @@ export default function LeftNav__item(props) {
         }
         onClick={() => props.changeActive(props.position)}
       >
-        <div className={styles.item__Container}>
-          <div
-            className={styles.item__icon}
-            style={{ backgroundImage: props.icon }}
-            alt={props.title}
-          ></div>
+        <div className={styles.item__container}>
+          <div className={styles.item__iconbg}>
+            <div
+              className={styles.item__icon}
+              style={{ backgroundImage: props.icon }}
+              alt={props.title}
+            ></div>
+          </div>
+
           <p className={styles.item__title}>{props.title}</p>
-          <div class={styles.item__arrow}></div>
+          <div className={styles.item__arrow}></div>
         </div>
       </li>
     );

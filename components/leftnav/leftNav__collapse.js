@@ -6,7 +6,11 @@ export default function LeftNav__collapse(props) {
       className={styles.leftNav__collapse}
       onClick={() => props.toggleSize()}
     >
-      <img src={"collapse.svg"}></img>
+      <div className={styles.collapse__spacer}></div>
+      <div className={styles.collapse__container}>
+        <div className={styles.collapse__img}></div>
+      </div>
+      <p className={styles.collapse__text}>Inklappen</p>
     </div>
   );
 }

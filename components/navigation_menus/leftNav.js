@@ -3,6 +3,7 @@ import LeftNav__item from "../leftnav/leftNav__item";
 
 import { useEffect, useState } from "react";
 import styles from "../../styles/LeftNav.module.css";
+import midStyles from "../../styles/MidNav.module.css";
 import LeftNav__collapse from "../leftnav/leftNav__collapse.js";
 
 export default function LeftNav() {
@@ -45,7 +46,7 @@ export default function LeftNav() {
 
   return (
     <div className={styles.leftNav__body + " " + collapsed()}>
-      <ul className={styles.LeftNav}>
+      <ul className={styles.leftNav__menu}>
         <LeftNav__item
           activeContent={activeContent}
           title={"Vakken"}
@@ -86,10 +87,10 @@ export default function LeftNav() {
           changeActive={changeActive}
           collapsed={collapseToggle}
         />
-
+        <div className={styles.spacer}></div>
         <LeftNav__collapse toggleSize={toggleSize} />
       </ul>
-      <div className={styles.midNav__container}>
+      <div className={midStyles.midNav__container}>
         <MidNav inhoud={activeContent} />
       </div>
     </div>
