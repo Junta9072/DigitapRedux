@@ -47,6 +47,7 @@ export default function LeftNav() {
   return (
     <div className={styles.leftNav__body + " " + collapsed()}>
       <ul className={styles.leftNav__menu}>
+        <h1 className={styles.digitap}>Digitap</h1>
         <LeftNav__item
           activeContent={activeContent}
           title={"Vakken"}
@@ -89,6 +90,7 @@ export default function LeftNav() {
         />
         <div className={styles.spacer}></div>
         <LeftNav__collapse toggleSize={toggleSize} />
+        <div className={styles.fillEnd}></div>
       </ul>
       <div className={midStyles.midNav__container}>
         <MidNav inhoud={activeContent} />

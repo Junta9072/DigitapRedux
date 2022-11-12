@@ -28,6 +28,7 @@ export default function LeftNav__item(props) {
           </div>
 
           <p className={styles.icon__title}>{props.title}</p>
+          <div className={styles.icon__arrow}></div>
         </div>
       </li>
     );
