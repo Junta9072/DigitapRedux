@@ -15,6 +15,11 @@
   --fastTr: 0.2s ease-out;
 }
 
+*::selection {
+  color: var(--white100);
+  background-color: var(--red300);
+}
+
 html,
 body {
   padding: 0;

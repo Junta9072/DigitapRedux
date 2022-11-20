@@ -1,6 +1,4 @@
-import RightNav from "./.js";
-
-export default function MidNav() {
+export default function RightNav(props) {
   return (
     <div className="midBody">
       <ul className="midNav">

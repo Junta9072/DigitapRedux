@@ -2,3 +2,122 @@
   background-color: var(--white100);
   color: black;
 }
+
+.midNav__content {
+  border-right: 2px solid black;
+}
+
+.md18 {
+  font-size: 18px;
+}
+.md24 {
+  font-size: 24px;
+}
+.md32 {
+  font-size: 32px;
+}
+
+.midBody {
+  display: grid;
+  grid-template-columns: 250px auto;
+  height: 100vh;
+}
+
+.midNav__title {
+  margin-top: 42px;
+  height: 82px;
+  border-bottom: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 8px;
+  font-size: 32pt;
+  font-weight: 700;
+}
+
+.vakken__general {
+  display: grid;
+  grid-auto-rows: 39px;
+  gap: 2px;
+  padding: 0px 0px 2px 0px;
+  background-color: black;
+}
+
+.vakken__item {
+  background-color: var(--white100);
+  display: grid;
+  grid-template-columns: 40px auto 40px;
+  transition: var(--fastTr);
+}
+
+.vakken__item i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vakken__item span,
+.vakken__title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  padding-left: 8px;
+  font-weight: 500;
+}
+
+.vakken__No,
+.vakken__notificationCounter,
+.vakken__deadlineCounter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--fastTr);
+
+  font-weight: 700;
+}
+
+.midNav__classes {
+  display: grid;
+  grid-auto-rows: 39px;
+  gap: 2px;
+  background-color: black;
+  border-bottom: 2px solid black;
+}
+
+.vakken__vak {
+  background-color: var(--white100);
+  display: grid;
+  grid-gap: 2px;
+  grid-template-columns: auto 40px 40px 40px;
+  transition: var(--fastTr);
+}
+
+.vakken__vak * {
+  pointer-events: none;
+}
+
+.vakken__title {
+  padding-left: 48px;
+}
+
+.vakken__active {
+  background-color: var(--red500);
+  color: var(--white100);
+}
+
+.vakken__active i {
+  transform: scale(1.05);
+}
+
+.vakken__active .vakken__No {
+  opacity: 0;
+}
+
+.vakken__active .vakken__title {
+  font-weight: 600;
+}
+
+.vakken__active .vakken__notificationCounter,
+.vakken__active .vakken__deadlineCounter {
+  color: transparent;
+}

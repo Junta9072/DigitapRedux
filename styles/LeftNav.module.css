@@ -1,7 +1,7 @@
 .leftNav__body {
   font-family: "Inter";
   display: grid;
-  grid-template-columns: 80px auto;
+  grid-template-columns: 82px auto;
   transition: 0.5s;
   height: 100vh;
   width: 100vw;
@@ -10,11 +10,12 @@
 
 .leftNav__menu {
   background-color: black;
-  padding-right: 1px;
+  border-right: 2px solid black;
 }
 
 .digitap {
-  width: 79px;
+  width: 80px;
+  height: 40px;
 
   padding: 2px;
   padding-bottom: 4px;
@@ -26,13 +27,21 @@
 
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-
-  padding-left: 7px;
+  justify-content: center;
 }
 
 .leftNav__item {
-  margin: 1px 0px;
+  margin: 2px 0px;
+  transition: 0.5s ease-in-out;
+}
+
+.active .icon__img {
+  filter: invert(1);
+  background-color: transparent;
+}
+
+.active .icon__bg {
+  background-color: var(--red500);
 }
 
 .icon__container {
@@ -40,27 +49,67 @@
   background-color: var(--white100);
   transition: var(--fastTr);
   display: grid;
-  grid-template-columns: 79px 0px 80px;
+  grid-template-columns: 80px 0px 80px;
 }
 
 .icon__img {
   background-color: var(--white100);
   height: 80px;
-  width: 79px;
+  width: 80px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40%;
 }
 
-.icon__arrow {
+.icon__slideContainer {
   transition: var(--fastTr);
   width: 0px;
   height: 80px;
-  background-image: url("../public/arrowRight.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 50% auto;
   background-color: var(--red500);
+  color: var(--white100);
+  padding-top: 4px;
+  font-size: 72px;
+  font-weight: 600;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  display: inline;
+}
+/* HIER EPISCHE SLIDING TEXT */
+/* The element to apply the animation to */
+
+@keyframes preSlide {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-370%);
+  }
+}
+
+@keyframes postSlide {
+  0% {
+    transform: translateX(370%) translateY(-100%);
+  }
+  100% {
+    transform: translateX(0%) translateY(-100%);
+  }
+}
+
+.icon__slideText1 {
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-name: preSlide;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}
+.icon__slideText2 {
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-name: postSlide;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
 }
 
 .icon__title {
@@ -71,13 +120,13 @@
   transform: translateX(-80px);
 }
 
-.icon__container:hover .icon__arrow {
+.icon__container:hover .icon__slideContainer {
   width: 80px;
 }
 
 .fillEnd {
-  margin: 1px 0px;
-  height: calc(100% - 6 * 80px - 34px);
+  margin: 2px 0px;
+  height: calc(100% - 5 * 82px - 42px);
   background-color: var(--white100);
 }
 
@@ -105,168 +154,4 @@
   background-position: center;
   transform: scaleX(-1);
   transition: 0.5s;
-}
-
-.LeftNav__expanded {
-  grid-template-columns: 200px auto;
-}
-
-.LeftNav__expanded .leftNav__menu {
-  background-color: black;
-  display: grid;
-  grid-template-rows: 0.1fr 0.1fr 0.1fr 0.1fr 0.1fr 0.1fr 1fr 0.1fr;
-  grid-gap: 1px;
-}
-
-.LeftNav__expanded .digitap {
-  width: 199px;
-  font-size: 20pt;
-  color: black;
-  font-weight: 600;
-  background-color: var(--white100);
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-
-  padding-left: 7px;
-}
-
-.LeftNav__item {
-  height: 100%;
-  width: 100%;
-}
-
-.LeftNav__expanded .leftNav__item {
-  margin: 0px;
-}
-
-.LeftNav__expanded .active .item__iconbg,
-.LeftNav__expanded .active .item__title,
-.LeftNav__expanded .active .item__arrow {
-  background-color: var(--red500);
-  color: var(--white100);
-}
-
-.LeftNav__expanded .active .item__icon {
-  filter: invert(1);
-}
-
-.LeftNav__expanded .item__container {
-  height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 40px 159px 40px;
-  transition: var(--fastTr);
-  overflow: hidden;
-}
-
-.LeftNav__expanded .item__iconbg {
-  background-color: var(--white100);
-}
-
-.LeftNav__expanded .item__icon {
-  width: 100%;
-  height: 100%;
-  background-size: 70%;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: invert(0);
-}
-
-.LeftNav__expanded .item__title {
-  background-color: var(--white100);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-
-  font-size: 20pt;
-  font-weight: 600;
-  color: black;
-  transition: var(--fastTr);
-
-  padding-left: 2px;
-}
-
-.LeftNav__expanded .item__arrow {
-  background-color: var(--red500);
-  width: 0px;
-  transition: var(--fastTr);
-  background-image: url("../public/arrowRight.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.LeftNav__expanded .item__container:hover {
-  transform: translateX(-40px);
-}
-
-.LeftNav__expanded .item__container .item__arrow {
-  pointer-events: none;
-}
-
-.LeftNav__expanded .item__container:hover .item__arrow {
-  width: 40px;
-}
-
-.LeftNav__expanded .spacer {
-  width: 199px;
-  background-color: var(--white100);
-}
-.LeftNav__expanded .leftNav__collapse {
-  background-color: black;
-  width: 200px;
-  height: auto;
-  display: grid;
-  grid-template-columns: 159px 40px 158px;
-  transition: 0.3s ease-in-out;
-}
-
-.LeftNav__expanded .collapse__spacer {
-  display: block;
-  background-color: var(--white100);
-}
-
-.LeftNav__expanded .leftNav__collapse:hover {
-  transform: translateX(-159px);
-}
-
-.LeftNav__expanded .leftNav__collapse:hover .collapse__text {
-  width: 159px;
-}
-
-.LeftNav__expanded .collapse__container {
-  background-color: var(--white100);
-}
-
-.LeftNav__expanded .collapse__img {
-  width: 100%;
-  height: 100%;
-  background: url("../public/collapse.svg");
-  filter: invert(0);
-  background-size: 70%;
-  background-repeat: no-repeat;
-  background-position: center;
-  transform: scaleX(1);
-  transition: 0.5s;
-}
-
-.collapse__text {
-  transition: 0.3s ease-in-out;
-  width: 0px;
-  background-color: var(--red500);
-  font-size: 20pt;
-  font-weight: 600;
-  padding-top: 10px;
-  color: var(--white100);
-  overflow: hidden;
-}
-
-.icon__container {
-  background-color: var(--red500);
-}
-
-.LeftNav__expanded .fillEnd {
-  display: none;
 }

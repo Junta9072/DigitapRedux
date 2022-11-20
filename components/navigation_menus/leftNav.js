@@ -88,8 +88,6 @@ export default function LeftNav() {
           changeActive={changeActive}
           collapsed={collapseToggle}
         />
-        <div className={styles.spacer}></div>
-        <LeftNav__collapse toggleSize={toggleSize} />
         <div className={styles.fillEnd}></div>
       </ul>
       <div className={midStyles.midNav__container}>
