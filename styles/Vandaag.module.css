@@ -1,0 +1,155 @@
+.header__container {
+  background-color: var(--white100);
+  border-bottom: black 2px solid;
+}
+
+.header__content {
+  width: min-content;
+  border-right: black 2px solid;
+  background-color: black;
+  display: grid;
+  grid-template-rows: 40px 80px;
+  grid-template-columns: 80px 408px 122px;
+  grid-gap: 2px;
+}
+
+.header__content * {
+  background-color: var(--white100);
+}
+
+.header__weekday {
+  width: 614px;
+  grid-area: 1 /1 / span 1 / span 3;
+  background-color: var(--white100);
+  font-size: 16pt;
+  color: var(--red500);
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 18px;
+}
+
+.header__day {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  opacity: 0.3;
+  text-transform: capitalize;
+  background-color: transparent;
+}
+
+.dayActive {
+  background-color: var(--white100);
+  color: var(--red500);
+  font-weight: 700;
+  opacity: 1;
+}
+
+.header__numDay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28pt;
+  font-weight: 700;
+  padding-top: 2px;
+}
+
+.header__txtMonth {
+  font-size: 32pt;
+  font-weight: 700;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.header__hms {
+  gap: 2px;
+  background-color: black;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1.2fr 1fr;
+}
+
+.header__hours {
+  width: 80px;
+  grid-area: 1 / 1 / span 2 / span 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 28pt;
+}
+
+.header__minutes {
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 16pt;
+}
+
+.header__seconds {
+  width: 40px;
+  padding-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 8pt;
+  color: var(--red500);
+}
+
+.rooster {
+  display: grid;
+  background-color: black;
+  width: calc(40.95 * 15px + 2px);
+  border-bottom: black solid 2px;
+  border-right: black solid 2px;
+}
+
+.rooster__top {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--white100),
+    var(--white100) 38.95px,
+    var(--white150) 38.95px,
+    var(--white150) 40.95px,
+    var(--white100) 40.95px
+  );
+  display: grid;
+  grid-auto-columns: 40.95px;
+  grid-auto-flow: column;
+  height: 40px;
+}
+
+.rooster__top p {
+  font-size: 8pt;
+  background-color: transparent;
+  font-weight: 400;
+  padding-left: 2px;
+  color: black;
+}
+
+.rooster__top p:nth-child(even) {
+  background-color: transparent;
+  color: black;
+  font-weight: 700;
+}
+
+.rooster__ShowCase {
+  height: 122px;
+  width: calc(40.95 * 15px);
+  background: repeating-linear-gradient(
+    90deg,
+    var(--white100),
+    var(--white100) 38.95px,
+    var(--white150) 38.95px,
+    var(--white150) 40.95px,
+    var(--white100) 40.95px
+  );
+}

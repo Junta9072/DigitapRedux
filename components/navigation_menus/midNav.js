@@ -7,9 +7,11 @@ import Admin_MidNav from "../midnav/admin_midNav";
 import Tools_MidNav from "../midnav/tools_midNav";
 import Account_MidNav from "../midnav/account_midNav";
 
+import RightNav from "./rightNav";
+
 import { useState, useEffect } from "react";
 
-export default function RightNav(props) {
+export default function MidNav(props) {
   const [midNavContent, setMidNavContent] = useState("peepeepoopoo");
   const [midNavTitle, setMidnavTitle] = useState("peepeepoopoo");
   const [rightNavSwitch, setRightNavSwitch] = useState(1);
@@ -51,7 +53,7 @@ export default function RightNav(props) {
         <h1 className={styles.midNav__title}>{midNavTitle}</h1>
         {midNavContent}
       </ul>
-      {/*<RightNav inhoud={rightNavSwitch} />*/}
+      <RightNav inhoud={rightNavSwitch} />
     </div>
   );
 }
