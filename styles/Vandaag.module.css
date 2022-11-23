@@ -107,12 +107,14 @@
 .rooster {
   display: grid;
   background-color: black;
-  width: calc(40.95 * 15px + 2px);
+  width: calc(40.94 * 15px + 2px);
   border-bottom: black solid 2px;
   border-right: black solid 2px;
+  overflow: hidden;
 }
 
 .rooster__top {
+  grid-area: 1 /1 / span 1 / span 1;
   background: repeating-linear-gradient(
     90deg,
     var(--white100),
@@ -142,6 +144,7 @@
 }
 
 .rooster__ShowCase {
+  grid-area: 2 / 1 / span 1 / span 1;
   height: 122px;
   width: calc(40.95 * 15px);
   background: repeating-linear-gradient(
@@ -152,4 +155,28 @@
     var(--white150) 40.95px,
     var(--white100) 40.95px
   );
+  display: grid;
+  grid-template-rows: 40px 40px 40px;
+  grid-template-columns: 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px;
+}
+
+.rooster__noClass {
+  width: 100%;
+  height: 100%;
+  grid-area: 1 / 1 / span 3 / span 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red500);
+}
+
+.rooster__class {
+  color: transparent;
+}
+
+.rooster__slider {
+  grid-area: 1 / 1 / span 2 / span 1;
+  width: 2px;
+  height: 100%;
+  background-color: var(--red500);
 }

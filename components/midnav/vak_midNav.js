@@ -78,7 +78,7 @@ export default function Vak_MidNav(props) {
               key={vak.vak_name}
               data-count={vakCounter}
               onClick={(e) => {
-                setActiveVak(parseInt(e.target.getAttribute("data-count")));
+                changeActiveVak(parseInt(e.target.getAttribute("data-count")));
                 console.log(activeVak);
               }}
             >

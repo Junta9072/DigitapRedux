@@ -1,11 +1,63 @@
 import { useEffect, useState } from "react";
-import { weekDay, numDay, txtMonth, hms } from "../../helpers/time";
+import Rooster_item from "./roosterItem";
+import { weekDay, dotW, numDay, txtMonth, hms } from "../../helpers/time";
 import styles from "../../styles/Vandaag.module.css";
 
 export default function Vandaag() {
   const [hours, setHours] = useState(hms.hour);
   const [minutes, setMinutes] = useState(hms.minutes);
   const [seconds, setSeconds] = useState(hms.seconds);
+
+  const [lesVandaag, setLesVandaag] = useState(" ");
+  const [roosterInhoud, setRoosterInhoud] = useState(" ");
+
+  let date = new Date();
+
+  let dotW_placeholder = 3;
+  function dotWfilter(rooster_item) {
+    return (
+      rooster_item.dotW == dotW_placeholder &&
+      new Date(rooster_item.date_start) < date &&
+      new Date(rooster_item.date_end) > date
+    );
+  }
+
+  function readRooster(obj) {
+    console.log(obj.roosterInfo.filter(dotWfilter));
+    if (obj.roosterInfo.filter(dotWfilter).length != 0) {
+      setLesVandaag(styles.rooster__class);
+    }
+
+    setRoosterInhoud(
+      obj.roosterInfo.filter(dotWfilter).map((rooster_item) => {
+        return <Rooster_item data={rooster_item} />;
+      })
+    );
+  }
+
+  const roosterOphalen = async () => {
+    const loginData = {
+      traject: sessionStorage.getItem("traject"),
+    };
+    const JSONLoginData = JSON.stringify(loginData);
+
+    const endpoint = "api/getRooster";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-type": "applications/json",
+      },
+      body: JSONLoginData,
+    };
+
+    const response = await fetch(endpoint, options);
+    const result = await response.json();
+    readRooster(result);
+  };
+
+  useEffect(() => {
+    roosterOphalen();
+  }, []);
 
   useEffect(() => {
     setInterval(() => {
@@ -45,6 +97,16 @@ export default function Vandaag() {
     }
   }
 
+  function sliderOffsetCalc() {
+    if (date.getHours() < 6) {
+      return "0%";
+    } else if (date.getHours() >= 20) {
+      return "calc(100% - 2px)";
+    } else {
+      return (date.getHours() - 6) / 14;
+    }
+  }
+
   return (
     <div>
       <header className={styles.header__container}>
@@ -78,7 +140,16 @@ export default function Vandaag() {
             <p>19:00</p>
             <p>20:00</p>
           </div>
-          <div className={styles.rooster__ShowCase}></div>
+          <div className={styles.rooster__ShowCase}>
+            <p className={styles.rooster__noClass + " " + lesVandaag}>
+              geen geplande lessen vandaag
+            </p>
+            {roosterInhoud}
+          </div>
+          <div
+            className={styles.rooster__slider}
+            style={{ marginLeft: sliderOffsetCalc() }}
+          ></div>
         </section>
       </main>
     </div>

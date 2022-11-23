@@ -27,11 +27,11 @@ export default function MidNav(props) {
         setMidnavTitle("Vakken");
         break;
       case 1:
-        setMidNavContent(<Rooster_MidNav />);
+        setMidNavContent(<Rooster_MidNav setRightNav={setRightNav} />);
         setMidnavTitle("Rooster");
         break;
       case 2:
-        setMidNavContent(<Admin_MidNav />);
+        setMidNavContent(<Admin_MidNav setRightNav={setRightNav} />);
         setMidnavTitle("Admin");
         break;
       case 3:
@@ -53,7 +53,7 @@ export default function MidNav(props) {
         <h1 className={styles.midNav__title}>{midNavTitle}</h1>
         {midNavContent}
       </ul>
-      <RightNav inhoud={rightNavSwitch} />
+      <RightNav section={props.inhoud} inhoud={rightNavSwitch} />
     </div>
   );
 }
