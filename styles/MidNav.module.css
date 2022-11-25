@@ -4,7 +4,8 @@
 }
 
 .midNav__content {
-  overflow-y: scroll;
+  overflow-y: auto;
+  border-right: 2px solid black;
 }
 
 .md18 {
@@ -43,6 +44,18 @@
   background-color: black;
 }
 
+.vakken__subtitle {
+  background-color: var(--white100);
+  display: grid;
+  transition: var(--fastTr);
+  font-weight: 600;
+  color: var(--red500);
+  padding-left: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .vakken__item {
   background-color: var(--white100);
   display: grid;
@@ -50,7 +63,12 @@
   transition: var(--fastTr);
 }
 
-.vakken__item i {
+.vakken__item.admin__item {
+  grid-template-columns: 40px auto;
+}
+
+.vakken__item i,
+.input__container i {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,6 +112,23 @@
 
 .vakken__vak * {
   pointer-events: none;
+}
+
+.input__container {
+  display: grid;
+  grid-template-columns: 40px auto;
+  border-bottom: solid 2px black;
+}
+
+.vakken__input {
+  width: 100%;
+  height: 40px;
+  background-color: var(--white100);
+  border: none;
+  padding-left: 11px;
+  color: var(--red500);
+  font-weight: 700;
+  border-radius: 0px;
 }
 
 .vakken__title {

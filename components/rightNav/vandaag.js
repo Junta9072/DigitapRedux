@@ -103,7 +103,7 @@ export default function Vandaag() {
     } else if (date.getHours() >= 20) {
       return "calc(100% - 2px)";
     } else {
-      return (date.getHours() - 6) / 14;
+      return ((date.getHours() - 6) / 14) * 100;
     }
   }
 
@@ -148,7 +148,7 @@ export default function Vandaag() {
           </div>
           <div
             className={styles.rooster__slider}
-            style={{ marginLeft: sliderOffsetCalc() }}
+            style={{ marginLeft: sliderOffsetCalc() + "%" }}
           ></div>
         </section>
       </main>

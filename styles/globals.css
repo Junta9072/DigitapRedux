@@ -26,12 +26,16 @@
 
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 2px 2px white;
-  border: solid 2px black;
+  border-top: solid 2px black;
+  border-left: solid 2px black;
+  border-bottom: solid 2px black;
 }
 
 ::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 10px 10px var(--white100);
-  border: solid 2px black;
+  border-top: solid 2px black;
+  border-left: solid 2px black;
+  border-bottom: solid 2px black;
 }
 
 html,

@@ -8,6 +8,8 @@ import RoosterRightNav from "../rightNav/roosterRightNav";
 
 import AdminRightNav from "../rightNav/adminRightNav";
 
+import ToolsRightNav from "../rightNav/toolsRightNav";
+
 import { useState, useEffect } from "react";
 
 export default function RightNav(props) {
@@ -62,6 +64,17 @@ export default function RightNav(props) {
     }
   }
 
+  function toolsRightNavSwitch() {
+    switch (props.inhoud) {
+      case 0:
+        setRightNavContent(<ToolsRightNav />);
+        break;
+
+      default:
+        break;
+    }
+  }
+
   useEffect(() => {
     switch (props.section) {
       case 0:
@@ -72,6 +85,9 @@ export default function RightNav(props) {
         break;
       case 2:
         adminRightNavSwitch();
+        break;
+      case 3:
+        toolsRightNavSwitch();
         break;
       default:
         break;
