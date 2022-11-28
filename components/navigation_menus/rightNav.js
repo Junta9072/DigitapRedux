@@ -5,10 +5,22 @@ import MonthDeadlines from "../rightNav/monthDeadlines";
 import AutoVak from "../autoVak";
 
 import RoosterRightNav from "../rightNav/roosterRightNav";
+import WeekOverview from "../rightNav/weekOverview";
+import MonthOverview from "../rightNav/monthOverview";
+import ThirtyDaysOverview from "../rightNav/thirtyDaysOverview";
 
 import AdminRightNav from "../rightNav/adminRightNav";
+import AutoAdmin from "../rightNav/autoAdmin";
 
 import ToolsRightNav from "../rightNav/toolsRightNav";
+import ContactForm from "../rightNav/contactForm";
+import Quiz from "../rightNav/quiz";
+import ExternalWebsite from "../rightNav/externalWebsite";
+
+import AccountRightNav from "../rightNav/accountRightNav";
+import MijnGegevens from "../rightNav/mijnGegevens";
+import MijnVoorkeuren from "../rightNav/mijnVoorkeuren";
+import AboutDigitap from "../rightNav/aboutDigitap";
 
 import { useState, useEffect } from "react";
 
@@ -17,26 +29,27 @@ export default function RightNav(props) {
 
   function vakRightNavSwitch() {
     console.log(props.inhoud);
-    switch (props.inhoud) {
-      case 1:
-        setRightNavContent(<Vandaag />);
-        break;
-      case 2:
-        setRightNavContent(<AllDeadlines />);
-        break;
-      case 3:
-        setRightNavContent(<WeekDeadlines />);
-        break;
-      case 4:
-        setRightNavContent(<MonthDeadlines />);
-        break;
-      case 5:
-        setRightNavContent(<AutoVak />);
-        break;
+    if (props.inhoud >= 5) {
+      setRightNavContent(<AutoVak vak={props.inhoud - 4} />);
+    } else {
+      switch (props.inhoud) {
+        case 1:
+          setRightNavContent(<Vandaag />);
+          break;
+        case 2:
+          setRightNavContent(<AllDeadlines />);
+          break;
+        case 3:
+          setRightNavContent(<WeekDeadlines />);
+          break;
+        case 4:
+          setRightNavContent(<MonthDeadlines />);
+          break;
 
-      default:
-        setRightNavContent(<Vandaag />);
-        break;
+        default:
+          setRightNavContent(<Vandaag />);
+          break;
+      }
     }
   }
 
@@ -46,6 +59,18 @@ export default function RightNav(props) {
         console.log("roosterSwitch");
         setRightNavContent(<RoosterRightNav />);
         break;
+      //Rooster Components
+      /*
+      case 1:
+        settRightNavContent(<WeekOverview />);
+        break;
+      case 2:
+        setRightNavContent(<MonthOverview />);
+        break;
+      case 3:
+        setRightNavContent(<ThirtyDaysOverview />);
+        break;
+        */
 
       default:
         break;
@@ -58,6 +83,11 @@ export default function RightNav(props) {
         console.log("adminSwitch");
         setRightNavContent(<AdminRightNav />);
         break;
+      /*
+        case 1:
+          setRightNavContent(<autoAdmin />)
+          break;
+          */
 
       default:
         break;
@@ -68,6 +98,28 @@ export default function RightNav(props) {
     switch (props.inhoud) {
       case 0:
         setRightNavContent(<ToolsRightNav />);
+        break;
+      //Componenten voor tools
+      /*
+case 1:
+  setRightNavContent(<ContactForm />)
+  break;
+  case 2:
+    setRightNavContent(<Quiz />)
+    break;
+    case 3:
+      setRightNavContent(<ExternalWebsite />)
+      break;
+      */
+      default:
+        break;
+    }
+  }
+
+  function AccountRightNavSwitch() {
+    switch (props.inhoud) {
+      case 0:
+        setRightNavContent(<AccountRightNav />);
         break;
 
       default:
@@ -88,6 +140,9 @@ export default function RightNav(props) {
         break;
       case 3:
         toolsRightNavSwitch();
+        break;
+      case 4:
+        AccountRightNavSwitch();
         break;
       default:
         break;
