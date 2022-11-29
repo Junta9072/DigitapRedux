@@ -11,6 +11,23 @@ export default function Vandaag() {
   const [lesVandaag, setLesVandaag] = useState(" ");
   const [roosterInhoud, setRoosterInhoud] = useState(" ");
 
+  //useStates voor klok
+  const [staticWeekDay, setStaticWeekDay] = useState("");
+  const [staticNumDay, setStaticNumDay] = useState("");
+  const [staticTxtMonth, setStaticTxtMonth] = useState("");
+  const [staticHours, setStaticHours] = useState("");
+  const [staticMinutes, setStaticMinutes] = useState("");
+  const [staticSeconds, setStaticSeconds] = useState("");
+
+  useEffect(() => {
+    setStaticWeekDay(weekDay);
+    setStaticNumDay(numDay);
+    setStaticTxtMonth(txtMonth);
+    setStaticHours(hms.hour);
+    setStaticMinutes(hms.minutes);
+    setStaticSeconds(hms.seconds);
+  });
+
   let date = new Date();
 
   let dotW_placeholder = 3;
@@ -111,13 +128,13 @@ export default function Vandaag() {
     <div>
       <header className={styles.header__container}>
         <div className={styles.header__content}>
-          <p className={styles.header__weekday}>{weekDay}</p>
-          <h1 className={styles.header__numDay}>{numDay}</h1>
-          <h1 className={styles.header__txtMonth}>{txtMonth}</h1>
+          <p className={styles.header__weekday}>{staticWeekDay}</p>
+          <h1 className={styles.header__numDay}>{staticNumDay}</h1>
+          <h1 className={styles.header__txtMonth}>{staticTxtMonth}</h1>
           <div className={styles.header__hms}>
-            <p className={styles.header__hours}>{hours}</p>
-            <p className={styles.header__minutes}>{minutes}</p>
-            <p className={styles.header__seconds}>{seconds}</p>
+            <p className={styles.header__hours}>{staticHours}</p>
+            <p className={styles.header__minutes}>{staticMinutes}</p>
+            <p className={styles.header__seconds}>{staticSeconds}</p>
           </div>
         </div>
       </header>

@@ -38,10 +38,24 @@ export default async function handler(req, res) {
         const [data] = await dbconnection.execute(query, values);
         let lectorPickingRes = data;
 
-        res.status(200).json({
+        try {
+          const query = "SELECT * FROM `rooster` WHERE koepel_ID = ?";
+          const values = [body.vak];
+          const [data] = await dbconnection.execute(query, values);
+          let lessenAPIResult = data;
+
+          res.status(200).json({
+            vakBasicInfo: vakBasicAPIResult,
+            lectorPickingInfo: lectorPickingRes,
+            lessenInfo: lessenAPIResult,
+          });
+        } catch (error) {
+          res.status(500).json({ error: error.message });
+        }
+        /*res.status(200).json({
           vakBasicInfo: vakBasicAPIResult,
           lectorPickingInfo: lectorPickingRes,
-        });
+        });*/
       } catch (error) {
         res.status(500).json({ error: error.message });
       }

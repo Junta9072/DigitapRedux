@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   try {
     console.log("stored traject = " + body.traject);
     const query =
-      "SELECT `deadline_name`,`deadline_date` FROM `deadlines` WHERE `traject_ID`=?;";
+      "SELECT `koepel_ID`,`deadline_name`,`deadline_date` FROM `deadlines` WHERE `traject_ID`=?;";
     const values = [body.traject];
     const [data] = await dbconnection.execute(query, values);
     let deadlineBasicAPIResult = data;

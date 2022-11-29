@@ -2,7 +2,7 @@ import Vandaag from "../rightNav/vandaag";
 import AllDeadlines from "../rightNav/allDeadlines";
 import WeekDeadlines from "../rightNav/weekDeadlines";
 import MonthDeadlines from "../rightNav/monthDeadlines";
-import AutoVak from "../autoVak";
+import AutoVak from "../autoVak/autoVak";
 
 import RoosterRightNav from "../rightNav/roosterRightNav";
 import WeekOverview from "../rightNav/weekOverview";

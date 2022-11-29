@@ -49,6 +49,31 @@ switch (time.weekday) {
     weekDay = "zaterdag";
 }
 
+function getWeekDay(arg) {
+  switch (arg) {
+    case 0:
+      return "zondag";
+      break;
+    case 1:
+      return "maandag";
+      break;
+    case 2:
+      return "dinsdag";
+      break;
+    case 3:
+      return "woensdag";
+      break;
+    case 4:
+      return "donderdag";
+      break;
+    case 5:
+      return "vrijdag";
+      break;
+    case 6:
+      return "zaterdag";
+  }
+}
+
 switch (numMonth) {
   case 1:
     txtMonth = "januari";
@@ -88,4 +113,38 @@ switch (numMonth) {
     break;
 }
 
-export { weekDay, dotW, numDay, numMonth, txtMonth, hms };
+let monthArray = [
+  "januari",
+  "februari",
+  "maart",
+  "april",
+  "mei",
+  "juni",
+  "juli",
+  "augustus",
+  "september",
+  "oktober",
+  "november",
+  "december",
+];
+function getTxtMonth(input) {
+  return monthArray[input];
+}
+
+function addDays(date1, addNo) {
+  console.log(date1, addNo * 86400000);
+
+  return new Date(date1.getTime() + addNo * 86400000);
+}
+
+export {
+  weekDay,
+  dotW,
+  numDay,
+  numMonth,
+  txtMonth,
+  hms,
+  getWeekDay,
+  addDays,
+  getTxtMonth,
+};
