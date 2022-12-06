@@ -120,7 +120,7 @@ export default function Vandaag() {
     } else if (date.getHours() >= 20) {
       return "calc(100% - 2px)";
     } else {
-      return ((date.getHours() - 6) / 14) * 100;
+      return ((date.getHours() - 6) / 15) * 100;
     }
   }
 

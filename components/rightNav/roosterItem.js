@@ -12,9 +12,16 @@ export default function Rooster_item(props) {
 
   function checkOngoing() {
     let date = new Date();
-    if (new Date(vak.hour_start) < date && new Date(vak.hour_end) > date) {
+    if (
+      vak.hour_start.slice(0, 2) < date.getHours() &&
+      vak.hour_end.slice(0, 2) > date.getHours()
+    ) {
+      console.log(vak.hour_start.slice(0, 2) + "||" + vak.hour_end.slice(0, 2));
+      console.log(date.getHours());
       return styles.item__ongoingClass;
     } else {
+      console.log(vak.hour_start.slice(0, 2) + "||" + vak.hour_end.slice(0, 2));
+      console.log(date.getHours());
       return " ";
     }
   }

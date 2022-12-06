@@ -137,6 +137,17 @@ function addDays(date1, addNo) {
   return new Date(date1.getTime() + addNo * 86400000);
 }
 
+function filterDate(ddl, daysNo) {
+  if (
+    ddl.getTime() < date.getTime() + daysNo * 86400000 &&
+    ddl.getTime() > date.getTime()
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 export {
   weekDay,
   dotW,
@@ -147,4 +158,5 @@ export {
   getWeekDay,
   addDays,
   getTxtMonth,
+  filterDate,
 };
