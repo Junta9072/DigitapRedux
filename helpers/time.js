@@ -75,40 +75,40 @@ function getWeekDay(arg) {
 }
 
 switch (numMonth) {
-  case 1:
+  case 0:
     txtMonth = "januari";
     break;
-  case 2:
+  case 1:
     txtMonth = "februari";
     break;
-  case 3:
+  case 2:
     txtMonth = "maart";
     break;
-  case 4:
+  case 3:
     txtMonth = "april";
     break;
-  case 5:
+  case 4:
     txtMonth = "mei";
     break;
-  case 6:
+  case 5:
     txtMonth = "juni";
     break;
-  case 7:
+  case 6:
     txtMonth = "juli";
     break;
-  case 8:
+  case 7:
     txtMonth = "augustus";
     break;
-  case 9:
+  case 8:
     txtMonth = "september";
     break;
-  case 10:
+  case 9:
     txtMonth = "oktober";
     break;
-  case 11:
+  case 10:
     txtMonth = "november";
     break;
-  case 12:
+  case 11:
     txtMonth = "december";
     break;
 }
@@ -132,8 +132,6 @@ function getTxtMonth(input) {
 }
 
 function addDays(date1, addNo) {
-  console.log(date1, addNo * 86400000);
-
   return new Date(date1.getTime() + addNo * 86400000);
 }
 
@@ -148,6 +146,17 @@ function filterDate(ddl, daysNo) {
   }
 }
 
+function getDayDiff(date1, date2) {
+  console.log(
+    Math.ceil(
+      (new Date(date1).getTime() - new Date(date2).getTime()) / 86400000
+    )
+  );
+  return Math.ceil(
+    (new Date(date1).getTime() - new Date(date2).getTime()) / 86400000
+  );
+}
+
 export {
   weekDay,
   dotW,
@@ -159,4 +168,5 @@ export {
   addDays,
   getTxtMonth,
   filterDate,
+  getDayDiff,
 };

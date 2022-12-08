@@ -1,7 +1,6 @@
 .rooster__block {
   display: grid;
-  grid-template-rows: 10px 40px 10px;
-  transform: translateY(-20px);
+  transform: translateY(-9px);
 }
 
 .item__time_start {
@@ -25,7 +24,9 @@
 }
 
 .item__vakTitle {
-  font-weight: 700;
+  font-weight: 900;
+  font-family: "Noto serif";
+  font-style: italic;
 }
 
 .item__location {

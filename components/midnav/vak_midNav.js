@@ -110,7 +110,7 @@ export default function Vak_MidNav(props) {
           onClick={() => changeActiveVak(1)}
         >
           <i className={"material-icons-outlined " + styles.md24}>today</i>
-          <span>Vandaag</span>
+          <span>Overzicht</span>
           <div className={styles.vakken__No}>0</div>
         </li>
         <li

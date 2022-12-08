@@ -28,7 +28,6 @@ export default function RightNav(props) {
   const [rightNavContent, setRightNavContent] = useState(<Vandaag />);
 
   function vakRightNavSwitch() {
-    console.log(props.inhoud);
     if (props.inhoud >= 5) {
       setRightNavContent(<AutoVak vak={props.inhoud - 4} />);
     } else {
@@ -56,7 +55,6 @@ export default function RightNav(props) {
   function roosterRightNavSwitch() {
     switch (props.inhoud) {
       case 0:
-        console.log("roosterSwitch");
         setRightNavContent(<RoosterRightNav />);
         break;
       //Rooster Components
@@ -80,7 +78,6 @@ export default function RightNav(props) {
   function adminRightNavSwitch() {
     switch (props.inhoud) {
       case 0:
-        console.log("adminSwitch");
         setRightNavContent(<AdminRightNav />);
         break;
       /*

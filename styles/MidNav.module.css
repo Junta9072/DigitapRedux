@@ -1,5 +1,5 @@
 .midNav__container {
-  background-color: var(--white100);
+  background-color: transparent;
   color: black;
 }
 
@@ -20,13 +20,13 @@
 
 .midBody {
   display: grid;
-  grid-template-columns: 250px auto;
+  grid-template-columns: 254px auto;
   height: 100vh;
 }
 
 .midNav__title {
-  margin-top: 42px;
-  height: 82px;
+  margin-top: 44px;
+  height: 86px;
   border-bottom: 2px solid black;
   display: flex;
   align-items: center;
@@ -38,29 +38,30 @@
 
 .vakken__general {
   display: grid;
-  grid-auto-rows: 39px;
-  gap: 2px;
-  padding: 0px 0px 2px 0px;
-  background-color: black;
+  grid-auto-rows: 44px;
+  background-color: transparent;
 }
 
 .vakken__subtitle {
-  background-color: var(--white100);
+  background-color: transparent;
   display: grid;
   transition: var(--fastTr);
-  font-weight: 600;
+  font-weight: 700;
+  font-style: italic;
   color: var(--red500);
   padding-left: 11px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  font-family: "Noto serif";
 }
 
 .vakken__item {
-  background-color: var(--white100);
+  background-color: transparent;
   display: grid;
   grid-template-columns: 40px auto 40px;
   transition: var(--fastTr);
+  border-bottom: 2px black solid;
 }
 
 .vakken__item.admin__item {
@@ -96,33 +97,38 @@
 
 .midNav__classes {
   display: grid;
-  grid-auto-rows: 39px;
-  gap: 2px;
-  background-color: black;
-  border-bottom: 2px solid black;
+  grid-auto-rows: 44px;
+  background-color: transparent;
 }
 
 .vakken__vak {
-  background-color: var(--white100);
+  background-color: transparent;
   display: grid;
   grid-gap: 2px;
-  grid-template-columns: auto auto 40px 40px;
+  grid-template-columns: auto auto 42px 42px;
   transition: var(--fastTr);
+  border-bottom: 2px solid black;
+  font-family: "Noto serif";
+  font-style: italic;
 }
 
 .vakken__vak * {
   pointer-events: none;
 }
 
+.vakken__vak span {
+  font-weight: 600;
+}
+
 .input__container {
   display: grid;
-  grid-template-columns: 40px auto;
+  grid-template-columns: 42px auto;
   border-bottom: solid 2px black;
 }
 
 .vakken__input {
   width: 100%;
-  height: 40px;
+  height: 42px;
   background-color: var(--white100);
   border: none;
   padding-left: 11px;
@@ -138,6 +144,9 @@
 .vakken__active {
   background-color: var(--red500);
   color: var(--white100);
+  font-family: "Noto serif";
+  font-weight: 900;
+  font-style: italic;
 }
 
 .vakken__active i {

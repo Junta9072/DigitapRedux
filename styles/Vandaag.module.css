@@ -1,33 +1,89 @@
+.vandaag__container {
+  width: 100%;
+  height: 100%;
+}
+
 .header__container {
-  background-color: var(--white100);
-  border-bottom: black 2px solid;
+  border: 2px solid black;
+  border-top: none;
+  width: min-content;
+  border-left: none;
 }
 
 .header__content {
-  width: min-content;
-  border-right: black 2px solid;
-  background-color: black;
+  border: 2px solid black;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  width: max-content;
   display: grid;
-  grid-template-rows: 40px 80px;
-  grid-template-columns: 80px 408px 122px;
-  grid-gap: 2px;
+  grid-template-rows: 86px;
+  grid-template-columns: 86px auto 128px;
 }
 
-.header__content * {
-  background-color: var(--white100);
+.vandaag__weekView {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: 40px 40px 40px auto 40px 40px 40px;
+}
+
+.weekView__weekDay {
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  overflow: hidden;
+}
+
+.weekView__txtDay {
+  padding-top: 16px;
+  writing-mode: vertical-lr;
+  color: var(--red500);
+  font-family: "Noto serif";
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+.weekView__numDate {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  color: var(--white100);
+  font-weight: 700;
+  font-size: 32pt;
+  -webkit-text-stroke: 1px black;
+  transform: translateX(21px);
+  transition: 0.2s ease-out;
+}
+
+.weekView__numDate__post {
+  transform: translateX(-9px);
+}
+
+.weekView__weekDay:hover .weekView__numDate {
+  transform: translateX(21px) translateY(-10px);
+}
+
+.weekView__weekDay:hover .weekView__numDate__post {
+  transform: translateX(-9px) translateY(-10px);
 }
 
 .header__weekday {
-  width: 614px;
-  grid-area: 1 /1 / span 1 / span 3;
-  background-color: var(--white100);
+  height: 40px;
+  font-weight: 400;
   font-size: 16pt;
-  color: var(--red500);
-  font-weight: 300;
+  padding-left: 8px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 18px;
+  color: var(--red500);
+  font-style: italic;
+  font-family: "Noto serif";
+  mix-blend-mode: multiply;
+  width: 100%;
 }
 
 .header__day {
@@ -49,52 +105,56 @@
 }
 
 .header__numDay {
+  font-size: 36pt;
+  font-weight: 700;
+  padding-top: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28pt;
-  font-weight: 700;
-  padding-top: 2px;
+  border-right: 2px solid black;
 }
 
 .header__txtMonth {
-  font-size: 32pt;
+  font-size: 36pt;
   font-weight: 700;
-  padding-left: 8px;
+  padding-left: 21px;
+  min-width: min-content;
+  width: calc(100vw - 558px - (6 * 40px));
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  border-right: 2px solid black;
 }
 
 .header__hms {
-  gap: 2px;
-  background-color: black;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1.2fr 1fr;
+  grid-template-columns: 86px 42px;
+  grid-template-rows: 1fr 1fr;
 }
 
 .header__hours {
-  width: 80px;
+  width: 86px;
   grid-area: 1 / 1 / span 2 / span 1;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 28pt;
+  border-right: black solid 2px;
 }
 
 .header__minutes {
-  width: 40px;
+  width: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 500;
-  font-size: 16pt;
+  font-size: 14pt;
+  border-bottom: 2px solid black;
 }
 
 .header__seconds {
-  width: 40px;
+  width: 42px;
   padding-top: 2px;
   display: flex;
   align-items: center;
@@ -104,13 +164,28 @@
   color: var(--red500);
 }
 
+.vandaag__sections {
+  display: flex;
+  flex-direction: row;
+}
+
 .rooster {
+  margin-left: 86px;
   display: grid;
-  background-color: black;
-  width: calc(40.94 * 15px + 2px);
-  border-bottom: black solid 2px;
-  border-right: black solid 2px;
-  overflow: hidden;
+  width: 336px;
+  height: calc(14 * 24px);
+
+  border-top: none;
+  grid-template-rows: 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px;
+  grid-template-columns: 168px 168px;
+}
+
+.rooster__title {
+  margin-top: 8px;
+  grid-area: 1 / 1 / span 1 / span 2;
+  font-size: 16pt;
+  font-weight: 700;
+  color: black;
 }
 
 .rooster__top {
@@ -129,37 +204,6 @@
   height: 40px;
 }
 
-.rooster__top p {
-  font-size: 8pt;
-  background-color: transparent;
-  font-weight: 400;
-  padding-left: 2px;
-  color: black;
-}
-
-.rooster__top p:nth-child(even) {
-  background-color: transparent;
-  color: black;
-  font-weight: 700;
-}
-
-.rooster__ShowCase {
-  grid-area: 2 / 1 / span 1 / span 1;
-  height: 122px;
-  width: calc(40.95 * 15px);
-  background: repeating-linear-gradient(
-    90deg,
-    var(--white100),
-    var(--white100) 38.95px,
-    var(--white150) 38.95px,
-    var(--white150) 40.95px,
-    var(--white100) 40.95px
-  );
-  display: grid;
-  grid-template-rows: 40px 40px 40px;
-  grid-template-columns: 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px 40.95px;
-}
-
 .rooster__noClass {
   width: 100%;
   height: 100%;
@@ -175,8 +219,44 @@
 }
 
 .rooster__slider {
-  grid-area: 1 / 1 / span 2 / span 1;
-  width: 2px;
-  height: 100%;
+  grid-area: 1 / 1 / span 1 / span 1;
+  height: 2px;
+  mix-blend-mode: multiply;
+  transform: translateX(-86px);
+  width: calc(100vw - (88px + 254px));
   background-color: var(--red500);
+  z-index: 2;
+}
+
+.deadlines__splitter {
+  font-weight: 500;
+  font-size: 12pt;
+  color: var(--red500);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  border-bottom: 2px solid black;
+}
+
+.deadlines__item {
+  height: 64px;
+  border: 2px solid black;
+  border-top: none;
+  padding-top: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.deadlines__title {
+  width: 90%;
+  height: calc(100% - 21px);
+  font-weight: 700;
+}
+
+.deadlines__date {
+  text-align: right;
+  color: var(--red500);
+  font-family: "Noto serif";
+  font-style: italic;
 }

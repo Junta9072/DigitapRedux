@@ -21,7 +21,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 16px;
+  width: 11px;
 }
 
 ::-webkit-scrollbar-track {
@@ -61,7 +61,22 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    color: black;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 41px,
+        var(--white150) 41px,
+        var(--white150) 42px,
+        transparent 42px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        var(--white100),
+        var(--white100) 41px,
+        var(--white150) 41px,
+        var(--white150) 42px,
+        var(--white100) 42px
+      );
   }
 }

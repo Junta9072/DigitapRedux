@@ -43,7 +43,6 @@ export default function MonthDeadlines() {
 
     const response = await fetch(endpoint, options);
     const result = await response.json();
-    console.log(result);
     renderDeadlines(result.deadlineBasicInfo.filter(thirtyDaysFilter));
   };
 

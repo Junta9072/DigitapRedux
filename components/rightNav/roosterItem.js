@@ -1,7 +1,6 @@
 import styles from "../../styles/rooster_item.module.css";
 
 export default function Rooster_item(props) {
-  console.log(props.data);
   let vak = props.data;
   vak.hour_start = vak.hour_start.slice(0, 5);
   vak.hour_end = vak.hour_end.slice(0, 5);
@@ -16,14 +15,14 @@ export default function Rooster_item(props) {
       vak.hour_start.slice(0, 2) < date.getHours() &&
       vak.hour_end.slice(0, 2) > date.getHours()
     ) {
-      console.log(vak.hour_start.slice(0, 2) + "||" + vak.hour_end.slice(0, 2));
-      console.log(date.getHours());
       return styles.item__ongoingClass;
     } else {
-      console.log(vak.hour_start.slice(0, 2) + "||" + vak.hour_end.slice(0, 2));
-      console.log(date.getHours());
       return " ";
     }
+  }
+
+  function getVakHeight(begin, end) {
+    return "" + (end - begin) * 24 + "px";
   }
 
   return (
@@ -33,11 +32,16 @@ export default function Rooster_item(props) {
       }
       style={{
         gridArea:
-          "1 / " + vak.autoStyle.begin + " / span 1 / " + vak.autoStyle.end,
+          vak.autoStyle.begin + " / 1 /" + vak.autoStyle.end + "/ span 1 ",
       }}
     >
       <p className={styles.item__time_start}>{vak.hour_start}</p>
-      <div className={styles.item__info}>
+      <div
+        className={styles.item__info}
+        style={{
+          height: getVakHeight(vak.autoStyle.begin, vak.autoStyle.end),
+        }}
+      >
         <h3 className={styles.item__vakTitle}>{vak.vak_name}</h3>
         <p className={styles.item__location}>
           <span className={styles.item__campus}>{vak.vak_location_campus}</span>
