@@ -27,6 +27,8 @@ export default function Vandaag() {
   //useStates voor klok
   const [preWeekContent, setPreWeekContent] = useState("");
   const [postWeekContent, setpostWeekContent] = useState("");
+  const [weekViewGrid, setWeekViewGrid] = useState("");
+  const [klokGridArea, setKlokGridArea] = useState("");
 
   const [staticWeekDay, setStaticWeekDay] = useState("");
   const [staticNumDay, setStaticNumDay] = useState("");
@@ -45,7 +47,7 @@ export default function Vandaag() {
   });
 
   function getPreWeek() {
-    let preWeek = dotW - 1;
+    let preWeek = dotW;
     let assembly = [];
     let counter = preWeek + 1;
     for (let i = 0; i < preWeek; i++) {
@@ -68,7 +70,7 @@ export default function Vandaag() {
   }
 
   function getPostWeek() {
-    let postWeek = 7 - dotW;
+    let postWeek = 6 - dotW;
     let assembly = [];
     let counter = 0;
     for (let i = 0; i < postWeek; i++) {
@@ -94,9 +96,37 @@ export default function Vandaag() {
     return postweekReturn;
   }
 
+  function getColumnStyling(currentDay) {
+    console.log(dotW);
+    let styles = {};
+    let days = [0, 1, 2, 3, 4, 5, 6]; // Sunday is 0, Monday is 1, etc.
+
+    // Create a string of column widths, with the current day's column set to "auto"
+    let columns = days.map((day, index) => {
+      if (day === currentDay) {
+        return "auto";
+      } else if (day < currentDay) {
+        return "40px";
+      } else {
+        return "40px";
+      }
+    });
+
+    // Set the grid-template-columns property to the string of column widths
+    styles["grid-template-columns"] = columns.join(" ");
+    console.log(styles);
+    setWeekViewGrid(styles["grid-template-columns"]);
+  }
+
+  function setKlokStyling() {
+    setKlokGridArea("1 /" + (dotW + 1) + "/ span 1 / span 1");
+  }
+
   useEffect(() => {
     setPreWeekContent(getPreWeek());
     setpostWeekContent(getPostWeek());
+    getColumnStyling(dotW);
+    setKlokStyling();
   }, []);
 
   let date = new Date();
@@ -149,16 +179,56 @@ export default function Vandaag() {
             new Date(ddl.deadline_date).toDateString() == date.toDateString()
         )
         .map((ddl) => {
-          return <Deadline name={ddl.deadline_name} date={ddl.deadline_date} />;
+          return (
+            <Deadline
+              name={ddl.deadline_name}
+              date={ddl.deadline_date}
+              class={
+                result.koepelInfo.find(
+                  (koepel) => koepel.koepel_ID == ddl.koepel_ID
+                ).vak_name
+              }
+            />
+          );
         }),
       result.deadlineBasicInfo.filter(sevenDaysFilter).map((ddl) => {
-        return <Deadline name={ddl.deadline_name} date={ddl.deadline_date} />;
+        return (
+          <Deadline
+            name={ddl.deadline_name}
+            date={ddl.deadline_date}
+            class={
+              result.koepelInfo.find(
+                (koepel) => koepel.koepel_ID == ddl.koepel_ID
+              ).vak_name
+            }
+          />
+        );
       }),
       result.deadlineBasicInfo.filter(thirtyDaysFilter).map((ddl) => {
-        return <Deadline name={ddl.deadline_name} date={ddl.deadline_date} />;
+        return (
+          <Deadline
+            name={ddl.deadline_name}
+            date={ddl.deadline_date}
+            class={
+              result.koepelInfo.find(
+                (koepel) => koepel.koepel_ID == ddl.koepel_ID
+              ).vak_name
+            }
+          />
+        );
       }),
       result.deadlineBasicInfo.filter(laterFilter).map((ddl) => {
-        return <Deadline name={ddl.deadline_name} date={ddl.deadline_date} />;
+        return (
+          <Deadline
+            name={ddl.deadline_name}
+            date={ddl.deadline_date}
+            class={
+              result.koepelInfo.find(
+                (koepel) => koepel.koepel_ID == ddl.koepel_ID
+              ).vak_name
+            }
+          />
+        );
       }),
     ];
 
@@ -199,6 +269,7 @@ export default function Vandaag() {
 
     const response = await fetch(endpoint, options);
     const result = await response.json();
+    console.log(result);
     readDeadlines(result);
   };
 
@@ -271,16 +342,20 @@ export default function Vandaag() {
     } else if (date.getHours() > 21) {
       return "calc(100% - 2px)";
     } else {
-      return (date.getHours() - 7) * 24 + 2 + date.getMinutes() * 0.4;
+      return (date.getHours() - 6) * 24 + 2 + date.getMinutes() * 0.4;
     }
   }
 
   return (
     <div>
       <div className={styles.vandaag__container}>
-        <div className={styles.vandaag__weekView}>
+        <div
+          className={styles.vandaag__weekView}
+          style={{ gridTemplateColumns: weekViewGrid }}
+        >
           {preWeekContent}
           <Klok
+            areaStyling={klokGridArea}
             staticWeekDay={staticWeekDay}
             staticNumDay={staticNumDay}
             staticTxtMonth={staticTxtMonth}
@@ -307,38 +382,40 @@ export default function Vandaag() {
           </section>
           <section>
             <h1 className={styles.rooster__title}>Komende Deadlines</h1>
-            <p
-              className={styles.deadlines__splitter}
-              style={{ opacity: getInhoudOpacity(0) }}
-            >
-              <span>Vandaag &emsp;</span>
-              <span>{getDeadlineLength(0)}</span>
-            </p>
-            {deadlineInhoud[0]}
-            <p
-              className={styles.deadlines__splitter}
-              style={{ opacity: getInhoudOpacity(1) }}
-            >
-              <span>Deze week &emsp;</span>
-              <span>{getDeadlineLength(1)}</span>
-            </p>
-            {deadlineInhoud[1]}
-            <p
-              className={styles.deadlines__splitter}
-              style={{ opacity: getInhoudOpacity(2) }}
-            >
-              <span>Deze maand &emsp;</span>
-              <span>{getDeadlineLength(2)}</span>
-            </p>
-            {deadlineInhoud[2]}
-            <p
-              className={styles.deadlines__splitter}
-              style={{ opacity: getInhoudOpacity(3) }}
-            >
-              <span>Later &emsp;</span>
-              <span>{getDeadlineLength(3)}</span>
-            </p>
-            {deadlineInhoud[3]}
+            <ul className={styles.deadline__container}>
+              <p
+                className={styles.deadlines__splitter}
+                style={{ opacity: getInhoudOpacity(0) }}
+              >
+                <span>Vandaag &emsp;</span>
+                <span>{getDeadlineLength(0)}</span>
+              </p>
+              {deadlineInhoud[0]}
+              <p
+                className={styles.deadlines__splitter}
+                style={{ opacity: getInhoudOpacity(1) }}
+              >
+                <span>Deze week &emsp;</span>
+                <span>{getDeadlineLength(1)}</span>
+              </p>
+              {deadlineInhoud[1]}
+              <p
+                className={styles.deadlines__splitter}
+                style={{ opacity: getInhoudOpacity(2) }}
+              >
+                <span>Deze maand &emsp;</span>
+                <span>{getDeadlineLength(2)}</span>
+              </p>
+              {deadlineInhoud[2]}
+              <p
+                className={styles.deadlines__splitter}
+                style={{ opacity: getInhoudOpacity(3) }}
+              >
+                <span>Later &emsp;</span>
+                <span>{getDeadlineLength(3)}</span>
+              </p>
+              {deadlineInhoud[3]}
+            </ul>
           </section>
         </main>
       </div>

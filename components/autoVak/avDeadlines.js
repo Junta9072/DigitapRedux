@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { getWeekDay, getTxtMonth } from "../../helpers/time";
+import styles from "../../styles/AutoVak.module.css";
+
+import AVDeadline from "./AVDeadline.js";
 
 export default function AVDeadlines(props) {
   const [vakDeadlines, setVakDeadlines] = useState("");
@@ -11,16 +14,9 @@ export default function AVDeadlines(props) {
   function renderDeadlines(input) {
     let filterDdl = input.filter(filterDeadlines);
     setVakDeadlines(
-      filterDdl.map((ddl) => {
+      filterDdl.map((ddl, i) => {
         let ddlDate = new Date(ddl.deadline_date);
-        return (
-          <li>
-            <span>{ddl.deadline_name}</span>{" "}
-            <span>
-              {ddlDate.getDate() + " " + getTxtMonth(ddlDate.getMonth())}
-            </span>
-          </li>
-        );
+        return <AVDeadline ddl={ddl} key={i} date={ddlDate} />;
       })
     );
   }
@@ -51,7 +47,7 @@ export default function AVDeadlines(props) {
   }, [props.vak]);
   return (
     <ul>
-      <p>Komende Deadlines voor dit vak:</p>
+      <p className={styles.upcoming__title}>Deadlines:</p>
       {vakDeadlines}
     </ul>
   );

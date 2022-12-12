@@ -24,7 +24,6 @@
 .vandaag__weekView {
   display: grid;
   grid-auto-flow: row;
-  grid-template-columns: 40px 40px 40px auto 40px 40px 40px;
 }
 
 .weekView__weekDay {
@@ -51,10 +50,9 @@
   display: flex;
   align-items: center;
   justify-items: center;
-  color: var(--white100);
+  color: black;
   font-weight: 700;
   font-size: 32pt;
-  -webkit-text-stroke: 1px black;
   transform: translateX(21px);
   transition: 0.2s ease-out;
 }
@@ -151,6 +149,7 @@
   font-weight: 500;
   font-size: 14pt;
   border-bottom: 2px solid black;
+  grid-area: 1 /2 / span 1 / span 1;
 }
 
 .header__seconds {
@@ -228,6 +227,11 @@
   z-index: 2;
 }
 
+.deadline__container {
+  overflow: auto;
+  max-height: 400px;
+}
+
 .deadlines__splitter {
   font-weight: 500;
   font-size: 12pt;
@@ -254,9 +258,15 @@
   font-weight: 700;
 }
 
-.deadlines__date {
-  text-align: right;
+.deadlines__subtitle {
   color: var(--red500);
   font-family: "Noto serif";
   font-style: italic;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.deadlines__vak {
+  font-weight: 700;
 }

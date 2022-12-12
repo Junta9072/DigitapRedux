@@ -2,7 +2,10 @@ import styles from "../../styles/Vandaag.module.css";
 
 export default function Klok(props) {
   return (
-    <header className={styles.header__container}>
+    <header
+      className={styles.header__container}
+      style={{ gridArea: props.areaStyling }}
+    >
       <h1 className={styles.header__weekday}>{props.staticWeekDay}</h1>
       <div className={styles.header__content}>
         <span className={styles.header__numDay}>{props.staticNumDay}</span>

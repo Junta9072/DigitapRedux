@@ -1,0 +1,223 @@
+.autoVak__header {
+  width: 100%;
+  height: 130px;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 86px;
+}
+
+.autoVak__abr {
+  margin-left: 21px;
+  font-size: 88pt;
+  font-family: "Noto serif";
+  font-style: italic;
+  color: transparent;
+  grid-area: 1 /1 / span 1 / span 1;
+  opacity: 0.8;
+  text-align: left;
+  -webkit-text-stroke: 1px var(--red500);
+}
+
+.autoVak__title {
+  height: 86px;
+  padding-top: 64px;
+  font-size: 32pt;
+  font-weight: 700;
+  padding-left: 8px;
+  grid-area: 1 /1 / span 1 / span 1;
+  z-index: 2;
+}
+
+.autoVak__lectoren {
+  display: flex;
+  flex-direction: row;
+  height: 44px;
+  border-bottom: 2px solid black;
+  padding-left: 2px;
+}
+
+.autoVak__lector {
+  font-size: 10pt;
+  font-weight: 500;
+  color: var(--red500);
+  height: 40px;
+  margin-right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 8px;
+  width: max-content;
+  overflow: hidden;
+  transition: width var(--fastTr);
+  animation-play-state: paused;
+}
+
+.autoVak__lector i {
+  font-size: 12pt;
+  margin-right: 4px;
+}
+
+.autoVak__lector div {
+  transform: translateY(-30%);
+  transition: var(--fastTr);
+}
+
+.autoVak__email {
+  opacity: 0;
+  transition: var(--fastTr);
+  position: relative;
+}
+
+.autoVak__email i,
+.autoVak__name i {
+  transform: translateY(3px);
+  font-size: 12pt;
+}
+
+.autoVak__name {
+  opacity: 1;
+  transition: var(--fastTr);
+}
+
+.autoVak__lector:hover div {
+  transform: translateY(15%);
+}
+
+.autoVak__lector:hover .autoVak__email {
+  opacity: 1;
+  width: auto;
+}
+
+.autoVak__lector:hover .autoVak__name {
+  opacity: 0;
+}
+
+.autoVak__email .autoVak__copyCover {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  width: 100%;
+  height: 150%;
+  opacity: 0;
+  pointer-events: none;
+  transition: 1s;
+}
+
+.autoVak__lector:hover .autoVak__email .autoVak__copyCover {
+  transform: translateY(-8px);
+}
+
+.autoVak__copyCover .autoVak__copyBg {
+  grid-area: 1 / 1 / span 1 / span 1;
+  background-color: var(--red500);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  transform: translateY(4px);
+}
+
+.autoVak__copyTxt {
+  grid-area: 1 / 1 / span 1 / span 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 2px;
+  color: var(--white150);
+  z-index: 2;
+}
+
+.autoVak__ani {
+  background-color: blue;
+}
+
+.kakaANI .autoVak__copyCover,
+.kakaANI .autoVak__copyTxt {
+  animation: 2s linear 1 running none kaka;
+}
+
+.kakaANI .autoVak__copyBg {
+  animation: 2s linear 1 running none copyBgANI;
+}
+
+@keyframes kaka {
+  0% {
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 1;
+  }
+  26% {
+    opacity: 0;
+  }
+}
+
+@keyframes copyBgANI {
+  0% {
+    width: 0px;
+  }
+  8% {
+    width: 100%;
+  }
+  16% {
+    width: 100%;
+    justify-self: flex-end;
+  }
+  24% {
+    width: 0px;
+    justify-self: flex-end;
+  }
+}
+
+.autoVak__content {
+  display: grid;
+  grid-template-columns: auto 256px;
+  height: calc(100% - 174px);
+}
+
+.upcoming__title {
+  margin-top: 8px;
+  grid-area: 1 / 1 / span 1 / span 2;
+  font-size: 16pt;
+  font-weight: 700;
+  color: black;
+  padding-left: 8px;
+  height: 42px;
+}
+
+.upcoming__section {
+  grid-area: 1 /2 / span 1 / span 1;
+  border-left: 2px solid black;
+}
+
+.upcoming__les,
+.upcoming__ddl {
+  border-bottom: 2px solid black;
+  height: 42px;
+  padding: 4px 8px;
+}
+
+.upcoming__vakInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.upcoming__vakTitle,
+.upcoming__ddlTitle {
+  font-weight: 700;
+  color: var(--red500);
+}
+
+.upcoming__vakLocation,
+.upcoming__ddlDate,
+.upcoming__vakLocation {
+  font-weight: 300;
+  font-size: 10pt;
+}

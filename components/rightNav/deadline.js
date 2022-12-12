@@ -6,8 +6,11 @@ export default function Deadline(props) {
   return (
     <div className={styles.deadlines__item}>
       <p className={styles.deadlines__title}>{props.name}</p>
-      <p className={styles.deadlines__date}>
-        {ddlDate.getDate() + " " + getTxtMonth(ddlDate.getMonth())}
+      <p className={styles.deadlines__subtitle}>
+        <span className={styles.deadlines__vak}>{props.class}</span>
+        <span className={styles.deadlines__date}>
+          {ddlDate.getDate() + " " + getTxtMonth(ddlDate.getMonth())}
+        </span>
       </p>
     </div>
   );
