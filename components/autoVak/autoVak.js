@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import AVLessen from "./avLessen";
 import AVDeadlines from "./avDeadlines";
+import VakContent from "./VakContent";
 import styles from "../../styles/AutoVak.module.css";
 
 export default function AutoVak(props) {
@@ -8,6 +9,7 @@ export default function AutoVak(props) {
   const [vakTitel, setVakTitel] = useState("");
   const [vakLectoren, setVakLectoren] = useState("");
   const [lessenAPIResult, setLessenAPIResult] = useState("");
+  const [vakContentAPIResult, setVakContentAPIResult] = useState("");
 
   let buttonPreUseState = [];
   const [buttonAnimation, setButtonAnimation] = useState("");
@@ -52,15 +54,26 @@ export default function AutoVak(props) {
           >
             <div className={styles.autoVak__nameAndEmail}>
               <p className={styles.autoVak__email}>
-                <i className={"material-icons-outlined "}>copy</i>
-                {lector.lector_email}
+                <div className={styles.lector__email}>
+                  <i
+                    className={
+                      styles.lector__icon + " material-icons-outlined "
+                    }
+                  >
+                    copy
+                  </i>
+                  {lector.lector_email}
+                </div>
+
                 <div className={styles.autoVak__copyCover}>
                   <div className={styles.autoVak__copyBg}></div>
                   <p className={styles.autoVak__copyTxt}>Copied!</p>
                 </div>
               </p>
               <p className={styles.autoVak__name}>
-                <i className={"material-icons-outlined "}>person</i>
+                <i className={"material-icons-outlined " + styles.lector__icon}>
+                  person
+                </i>
                 {lector.lector_name}
               </p>
             </div>
@@ -71,23 +84,48 @@ export default function AutoVak(props) {
     setLessenAPIResult(result.lessenInfo);
   };
 
+  const VakContentOphalen = async () => {
+    const loginData = {
+      bundle: 1,
+    };
+    const JSONLoginData = JSON.stringify(loginData);
+
+    const endpoint = "api/getAutoVakContent";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-type": "applications/json",
+      },
+      body: JSONLoginData,
+    };
+
+    const response = await fetch(endpoint, options);
+    const result = await response.json();
+    console.log(result);
+    setVakContentAPIResult(result);
+  };
+
   useEffect(() => {
     VakInfoOphalen();
+    VakContentOphalen();
   }, [props.vak, buttonAnimation]);
   //damn
   return (
     <div className={styles.autoVak__container}>
-      <header className={styles.autoVak__header}>
-        <p className={styles.autoVak__abr}>{vakAfkorting}</p>
-        <h1 className={styles.autoVak__title}>{vakTitel}</h1>
-      </header>
-      <div className={styles.autoVak__lectoren}>{vakLectoren}</div>
-      <main className={styles.autoVak__content}>
-        <section className={styles.upcoming__section}>
-          <AVLessen data={lessenAPIResult} vakName={vakAfkorting} />
-          <AVDeadlines vak={props.vak} vakName={vakAfkorting} />
-        </section>
-      </main>
+      <div className={styles.autoVak__scrollable}>
+        <header className={styles.autoVak__header}>
+          <p className={styles.autoVak__abr}>{vakAfkorting}</p>
+          <h1 className={styles.autoVak__title}>{vakTitel}</h1>
+        </header>
+        <div className={styles.autoVak__lectoren}>{vakLectoren}</div>
+        <main className={styles.autoVak__content}>
+          <VakContent content={vakContentAPIResult} />
+        </main>
+      </div>
+      <section className={styles.upcoming__section}>
+        <AVLessen data={lessenAPIResult} vakName={vakAfkorting} />
+        <AVDeadlines vak={props.vak} vakName={vakAfkorting} />
+      </section>
     </div>
   );
 }

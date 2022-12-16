@@ -6,6 +6,16 @@ export default function Rooster_MidNav(props) {
   function changeActiveVak(arg) {
     props.setRightNav(arg);
   }
+
+  let roosterData = {
+    trajecten: [
+      { traject_name: "3GDM IDL-CEC", koepel_ID: 1 },
+      { traject_name: "2GDM IDL", koepel_ID: 2 },
+    ],
+  };
+
+  function roosterMenu() {}
+
   return (
     <>
       <ul className={styles.vakken__general}>

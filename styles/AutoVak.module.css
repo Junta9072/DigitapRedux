@@ -1,9 +1,19 @@
+.autoVak__container {
+  display: grid;
+  grid-template-columns: auto 256px;
+  overflow: hidden;
+}
+
+.autoVak__scrollable {
+  overflow-y: overlay;
+}
+
 .autoVak__header {
-  width: 100%;
   height: 130px;
   display: grid;
-  grid-template-columns: 100%;
   grid-template-rows: 86px;
+  width: 100%;
+  min-width: 520px;
 }
 
 .autoVak__abr {
@@ -32,8 +42,9 @@
   display: flex;
   flex-direction: row;
   height: 44px;
-  border-bottom: 2px solid black;
   padding-left: 2px;
+  width: calc(100vw - 598px);
+  min-width: 520px;
 }
 
 .autoVak__lector {
@@ -46,7 +57,6 @@
   align-items: center;
   justify-content: center;
   padding: 0px 8px;
-  width: max-content;
   overflow: hidden;
   transition: width var(--fastTr);
   animation-play-state: paused;
@@ -55,6 +65,7 @@
 .autoVak__lector i {
   font-size: 12pt;
   margin-right: 4px;
+  display: inline;
 }
 
 .autoVak__lector div {
@@ -62,30 +73,42 @@
   transition: var(--fastTr);
 }
 
+.autoVak__nameAndEmail {
+  overflow: visible;
+}
+
 .autoVak__email {
   opacity: 0;
   transition: var(--fastTr);
   position: relative;
+  overflow: visible;
+  text-overflow: ellipsis;
 }
 
 .autoVak__email i,
 .autoVak__name i {
-  transform: translateY(3px);
   font-size: 12pt;
+}
+
+.lector__email {
+  transform: translateY(100px);
 }
 
 .autoVak__name {
   opacity: 1;
   transition: var(--fastTr);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.autoVak__lector:hover div {
-  transform: translateY(15%);
+.autoVak__lector:hover .autoVak__nameAndEmail {
+  transform: translateY(29%);
 }
 
 .autoVak__lector:hover .autoVak__email {
   opacity: 1;
-  width: auto;
+  width: 100%;
 }
 
 .autoVak__lector:hover .autoVak__name {
@@ -176,9 +199,10 @@
 }
 
 .autoVak__content {
-  display: grid;
-  grid-template-columns: auto 256px;
-  height: calc(100% - 174px);
+  width: calc(100vw - 598px);
+  overflow: hidden;
+  padding-left: 21px;
+  padding-right: 42px;
 }
 
 .upcoming__title {
@@ -192,6 +216,7 @@
 }
 
 .upcoming__section {
+  padding-top: 40px;
   grid-area: 1 /2 / span 1 / span 1;
   border-left: 2px solid black;
 }
