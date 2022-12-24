@@ -47,12 +47,12 @@ export default function Vak_MidNav(props) {
   };
 
   function changeActiveVak(arg) {
-    setActiveVak(arg);
     props.setRightNav(arg);
+    console.log("up!");
   }
 
   function checkActiveVak(arg) {
-    if (arg == activeVak) {
+    if (arg == props.activeVak) {
       console.log(arg);
       return styles.vakken__active;
     } else {
@@ -61,10 +61,10 @@ export default function Vak_MidNav(props) {
   }
 
   function getActiveVak() {
-    return activeVak;
+    return props.activeVak;
   }
 
-  let vakCounter = 4;
+  let vakCounter = 1;
   function mapTraject() {
     if (!trajectData) {
       setTrajectListing("kon geen data vinden");
@@ -79,7 +79,7 @@ export default function Vak_MidNav(props) {
               data-count={vakCounter}
               onClick={(e) => {
                 changeActiveVak(parseInt(e.target.getAttribute("data-count")));
-                console.log(activeVak);
+                console.log(props.activeVak);
               }}
             >
               <span className={styles.vakken__title}>{vak.vak_name}</span>
@@ -96,7 +96,7 @@ export default function Vak_MidNav(props) {
   useEffect(() => {
     trajectOphalen();
     deadlineOphalen();
-  }, [activeVak]);
+  }, [props.activeVak]);
 
   useEffect(() => {
     mapTraject();
@@ -111,30 +111,6 @@ export default function Vak_MidNav(props) {
         >
           <i className={"material-icons-outlined " + styles.md24}>today</i>
           <span>Overzicht</span>
-          <div className={styles.vakken__No}>0</div>
-        </li>
-        <li
-          className={styles.vakken__item + " " + checkActiveVak(2)}
-          onClick={() => changeActiveVak(2)}
-        >
-          <i className={"material-icons-outlined " + styles.md24}>upcoming</i>
-          <span>Alle deadlines</span>
-          <div className={styles.vakken__No}>0</div>
-        </li>
-        <li
-          className={styles.vakken__item + " " + checkActiveVak(3)}
-          onClick={() => changeActiveVak(3)}
-        >
-          <i className={"material-icons-outlined " + styles.md24}>&#xe916;</i>
-          <span>Komende 7 dagen</span>
-          <div className={styles.vakken__No}>0</div>
-        </li>
-        <li
-          className={styles.vakken__item + " " + checkActiveVak(4)}
-          onClick={() => changeActiveVak(4)}
-        >
-          <i className={"material-icons-outlined " + styles.md24}>&#xebcc;</i>
-          <span>Komende 30 dagen</span>
           <div className={styles.vakken__No}>0</div>
         </li>
       </ul>

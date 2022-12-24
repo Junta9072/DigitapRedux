@@ -32,7 +32,7 @@ export default function Rooster_item(props) {
       }
       style={{
         gridArea:
-          vak.autoStyle.begin + " / 1 /" + vak.autoStyle.end + "/ span 1 ",
+          vak.autoStyle.begin + " / 1 /" + vak.autoStyle.end + "/ span 2 ",
       }}
     >
       <p className={styles.item__time_start}>{vak.hour_start}</p>
@@ -41,6 +41,7 @@ export default function Rooster_item(props) {
         style={{
           height: getVakHeight(vak.autoStyle.begin, vak.autoStyle.end),
         }}
+        onClick={() => props.navigate(vak.koepel_ID)}
       >
         <h3 className={styles.item__vakTitle}>{vak.vak_name}</h3>
         <p className={styles.item__location}>

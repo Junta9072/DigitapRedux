@@ -1,0 +1,72 @@
+.rooster__header {
+  height: 130px;
+  border-bottom: 2px solid black;
+  display: grid;
+  grid-template-rows: 86px;
+}
+
+.header__year {
+  margin-left: 21px;
+  font-size: 88pt;
+  font-family: "Noto serif";
+  font-style: italic;
+  color: transparent;
+  grid-area: 1 /1 / span 1 / span 1;
+  opacity: 0.8;
+  text-align: left;
+  -webkit-text-stroke: 1px var(--red500);
+}
+
+.header__title {
+  height: 86px;
+  padding-top: 64px;
+  margin-left: 21px;
+  font-size: 32pt;
+  font-weight: 700;
+  padding-left: 8px;
+  grid-area: 1 /1 / span 1 / span 1;
+  z-index: 2;
+}
+
+.weekday__numDate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px;
+}
+
+.weekday__active * {
+  color: var(--red500);
+}
+
+.weekday__numDate * {
+  display: inline;
+  text-transform: uppercase;
+}
+
+.weekGrid__container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 172px calc(100vh - 302px);
+}
+
+.weekday__container {
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+  grid-area: auto/auto/span 2 / span 1;
+}
+
+.weekday__container:first-of-type {
+  border-left: none;
+}
+
+.weekday__container:nth-of-type(6) {
+  grid-area: 1/6 / span 1 / span 1;
+}
+
+.weekday__container:nth-of-type(7) {
+  grid-area: 2/6 / span 1 / span 1;
+}

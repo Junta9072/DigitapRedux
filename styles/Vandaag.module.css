@@ -52,21 +52,18 @@
   justify-items: center;
   color: black;
   font-weight: 700;
-  font-size: 32pt;
-  transform: translateX(21px);
+  font-size: 16pt;
   transition: 0.2s ease-out;
-}
-
-.weekView__numDate__post {
-  transform: translateX(-9px);
+  writing-mode: vertical-lr;
+  padding-top: 8px;
 }
 
 .weekView__weekDay:hover .weekView__numDate {
-  transform: translateX(21px) translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .weekView__weekDay:hover .weekView__numDate__post {
-  transform: translateX(-9px) translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .header__weekday {
@@ -166,25 +163,72 @@
 .vandaag__sections {
   display: flex;
   flex-direction: row;
+  padding-left: 38px;
+  padding-top: 21px;
+}
+
+.vandaag__sections section {
+  margin-right: 42px;
 }
 
 .rooster {
-  margin-left: 86px;
   display: grid;
   width: 336px;
   height: calc(14 * 24px);
-
+  border: 2px solid black;
   border-top: none;
   grid-template-rows: 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px;
-  grid-template-columns: 168px 168px;
+  grid-template-columns: 168px;
+  animation: dayViewWidth 0.2s both ease-in-out;
+}
+
+@keyframes dayViewWidth {
+  from {
+    width: 559px;
+  }
+  to {
+    width: 340px;
+  }
 }
 
 .rooster__title {
-  margin-top: 8px;
-  grid-area: 1 / 1 / span 1 / span 2;
-  font-size: 16pt;
-  font-weight: 700;
-  color: black;
+  grid-area: 1 /1 / span 1 / span 1;
+  border: 2px solid black;
+  border-bottom: none;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 4px 16px;
+  color: var(--white150);
+  font-family: "noto serif";
+  font-weight: 500;
+  font-style: italic;
+  width: fit-content;
+  min-width: 126px;
+  background-color: var(--red500);
+}
+
+.rooster__options {
+  display: flex;
+  flex-direction: row;
+  height: 42px;
+}
+
+.rooster__options p {
+  transition: var(--fastTr);
+}
+
+.rooster__options p:last-child {
+  border-left: none;
+}
+
+.rooster__options p {
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
 }
 
 .rooster__top {
@@ -221,15 +265,67 @@
   grid-area: 1 / 1 / span 1 / span 1;
   height: 2px;
   mix-blend-mode: multiply;
-  transform: translateX(-86px);
-  width: calc(100vw - (88px + 254px));
+  transform: translateX(-42px);
+  width: calc(100vw - (88px + 252px));
   background-color: var(--red500);
   z-index: 2;
 }
 
+.lesContainer * {
+  transition: var(--fastTr);
+}
+
+.rooster__weekView {
+  display: grid;
+  width: 339px;
+  height: calc(14 * 24px);
+
+  border: 2px solid black;
+  grid-template-rows: 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px 24px;
+  grid-template-columns: 111px 111px 111px 111px 111px;
+  border-top: none;
+  animation: weekViewWidth 0.2s both ease-in-out;
+  grid-template-areas:
+    "maandag dinsdag woensdag donderdag vrijdag"
+    "maandag dinsdag woensdag donderdag vrijdag"
+    "maandag dinsdag woensdag donderdag vrijdag"
+    "maandag dinsdag woensdag donderdag vrijdag"
+    "maandag dinsdag woensdag donderdag vrijdag"
+    "maandag dinsdag woensdag donderdag vrijdag"
+    "maandag dinsdag woensdag donderdag vrijdag"
+    "maandag dinsdag woensdag donderdag vrijdag"
+    "maandag dinsdag woensdag donderdag vrijdag"
+    "maandag dinsdag woensdag donderdag vrijdag"
+    "maandag dinsdag woensdag donderdag vrijdag"
+    "maandag dinsdag woensdag donderdag vrijdag"
+    "maandag dinsdag woensdag donderdag vrijdag"
+    "maandag dinsdag woensdag donderdag vrijdag";
+}
+
+@keyframes weekViewWidth {
+  from {
+    width: 340px;
+  }
+  to {
+    width: 557px;
+  }
+}
+
+.rooster__options .roosterSwitch__active {
+  background-color: var(--red500);
+  color: var(--white100);
+  font-family: "noto serif";
+  font-style: italic;
+}
+
 .deadline__container {
   overflow: auto;
-  max-height: 400px;
+  height: 336px;
+  border: 2px solid black;
+}
+
+.deadlinesSection {
+  height: 378px;
 }
 
 .deadlines__splitter {
@@ -239,17 +335,30 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-top: 4px;
   border-bottom: 2px solid black;
+  padding: 8px;
 }
 
 .deadlines__item {
   height: 64px;
   border: 2px solid black;
   border-top: none;
+  border-right: none;
+  border-left: none;
   padding-top: 8px;
   padding-left: 8px;
   padding-right: 8px;
+  transition: var(--fastTr);
+}
+
+.deadlines__item:hover {
+  background-color: var(--red500);
+  color: var(--white100);
+}
+
+.deadlines__item:hover .deadlines__subtitle,
+.deadlines__item:hover .deadlines__vak {
+  color: var(--white100);
 }
 
 .deadlines__title {
@@ -269,4 +378,21 @@
 
 .deadlines__vak {
   font-weight: 700;
+}
+
+.week__dayName {
+  font-weight: 700;
+  padding-top: 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-family: "noto serif";
+  font-style: italic;
+  color: var(--red500);
+  border-right: 2px solid black;
+  padding-left: 2px;
+}
+
+.week__dayName:last-of-type {
+  border-right: none;
 }

@@ -15,19 +15,31 @@ export default function MidNav(props) {
   const [midNavContent, setMidNavContent] = useState("peepeepoopoo");
   const [midNavTitle, setMidnavTitle] = useState("peepeepoopoo");
   const [rightNavSwitch, setRightNavSwitch] = useState(1);
+  const [activeVak, setActiveVak] = useState(1);
 
-  function setRightNav(arg) {
+  const setRightNav = (arg) => {
+    console.log("catch!" + arg);
     setRightNavSwitch(arg);
-  }
+    setActiveVak(arg);
+  };
+
+  const navigate = (arg) => {
+    setRightNavSwitch(arg + 1);
+    setActiveVak(arg + 1);
+  };
 
   useEffect(() => {
     switch (props.inhoud) {
       case 0:
-        setMidNavContent(<Vak_MidNav setRightNav={setRightNav} />);
+        setMidNavContent(
+          <Vak_MidNav setRightNav={setRightNav} activeVak={activeVak} />
+        );
         setMidnavTitle("Vakken");
         break;
       case 1:
-        setMidNavContent(<Rooster_MidNav setRightNav={setRightNav} />);
+        setMidNavContent(
+          <Rooster_MidNav setRightNav={setRightNav} activeVak={activeVak} />
+        );
         setMidnavTitle("Rooster");
         break;
       case 2:
@@ -45,7 +57,7 @@ export default function MidNav(props) {
       default:
         break;
     }
-  }, [props.inhoud]);
+  }, [props.inhoud, activeVak]);
 
   return (
     <div className={styles.midBody}>
@@ -53,7 +65,11 @@ export default function MidNav(props) {
         <h1 className={styles.midNav__title}>{midNavTitle}</h1>
         {midNavContent}
       </ul>
-      <RightNav section={props.inhoud} inhoud={rightNavSwitch} />
+      <RightNav
+        section={props.inhoud}
+        inhoud={rightNavSwitch}
+        navigate={navigate}
+      />
     </div>
   );
 }

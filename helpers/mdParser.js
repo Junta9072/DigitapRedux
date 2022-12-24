@@ -10,7 +10,7 @@ function parseMarkdown(markdownText) {
     .replace(/\*\*(.*)\*\*/gim, "<b>$1</b>") //bold
     .replace(/\*(.*)\*/gim, "<i>$1</i>") //italics
     .replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' />") //img
-    .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>") //anchor
+    .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2' target='_blank'>$1</a>") //anchor
     .replace(/\n$/gim, "<br />") //line break
     .replace(/^\*\s(.*)$/gm, "<li>$1</li>") //unordered lists
     .replace(/^\*.*(?=\n|$)(?:\n|.)*\*.*$/gm, "<ul>$1</ul>")

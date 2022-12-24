@@ -7,7 +7,6 @@ import AutoVak from "../autoVak/autoVak";
 import RoosterRightNav from "../rightNav/roosterRightNav";
 import WeekOverview from "../rightNav/weekOverview";
 import MonthOverview from "../rightNav/monthOverview";
-import ThirtyDaysOverview from "../rightNav/thirtyDaysOverview";
 
 import AdminRightNav from "../rightNav/adminRightNav";
 import AutoAdmin from "../rightNav/autoAdmin";
@@ -25,53 +24,30 @@ import AboutDigitap from "../rightNav/aboutDigitap";
 import { useState, useEffect } from "react";
 
 export default function RightNav(props) {
-  const [rightNavContent, setRightNavContent] = useState(<Vandaag />);
+  const navigate = (arg) => {
+    console.log("upward RN " + arg);
+    props.navigate(arg);
+  };
+  const [rightNavContent, setRightNavContent] = useState(
+    <Vandaag navigate={navigate} />
+  );
 
   function vakRightNavSwitch() {
-    if (props.inhoud >= 5) {
-      setRightNavContent(<AutoVak vak={props.inhoud - 4} />);
+    if (props.inhoud >= 2) {
+      setRightNavContent(<AutoVak vak={props.inhoud - 1} />);
     } else {
-      switch (props.inhoud) {
-        case 1:
-          setRightNavContent(<Vandaag />);
-          break;
-        case 2:
-          setRightNavContent(<AllDeadlines />);
-          break;
-        case 3:
-          setRightNavContent(<WeekDeadlines />);
-          break;
-        case 4:
-          setRightNavContent(<MonthDeadlines />);
-          break;
-
-        default:
-          setRightNavContent(<Vandaag />);
-          break;
-      }
+      setRightNavContent(<Vandaag navigate={navigate} />);
     }
   }
 
   function roosterRightNavSwitch() {
-    switch (props.inhoud) {
-      case 0:
-        setRightNavContent(<RoosterRightNav />);
-        break;
-      //Rooster Components
-      /*
-      case 1:
-        settRightNavContent(<WeekOverview />);
-        break;
-      case 2:
-        setRightNavContent(<MonthOverview />);
-        break;
-      case 3:
-        setRightNavContent(<ThirtyDaysOverview />);
-        break;
-        */
+    if (props.inhoud % 2 == 0) {
+      setRightNavContent(<WeekOverview />);
+    }
 
-      default:
-        break;
+    // if the number is odd
+    else {
+      setRightNavContent(<MonthOverview />);
     }
   }
 

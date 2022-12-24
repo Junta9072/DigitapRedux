@@ -29,6 +29,7 @@
 }
 
 .autoVak__title {
+  margin-left: 21px;
   height: 86px;
   padding-top: 64px;
   font-size: 32pt;
@@ -130,7 +131,7 @@
 }
 
 .autoVak__lector:hover .autoVak__email .autoVak__copyCover {
-  transform: translateY(-8px);
+  transform: translateY(-10px);
 }
 
 .autoVak__copyCover .autoVak__copyBg {

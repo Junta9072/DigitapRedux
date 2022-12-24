@@ -74,6 +74,11 @@ function getWeekDay(arg) {
   }
 }
 
+function getAbrWeekday(arg) {
+  let array = ["zo", "ma", "di", "wo", "do", "vr", "za"];
+  return array[arg];
+}
+
 switch (numMonth) {
   case 0:
     txtMonth = "januari";
@@ -147,11 +152,6 @@ function filterDate(ddl, daysNo) {
 }
 
 function getDayDiff(date1, date2) {
-  console.log(
-    Math.ceil(
-      (new Date(date1).getTime() - new Date(date2).getTime()) / 86400000
-    )
-  );
   return Math.ceil(
     (new Date(date1).getTime() - new Date(date2).getTime()) / 86400000
   );
@@ -169,4 +169,5 @@ export {
   getTxtMonth,
   filterDate,
   getDayDiff,
+  getAbrWeekday,
 };

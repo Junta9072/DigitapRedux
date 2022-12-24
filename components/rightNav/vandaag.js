@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import Rooster_item from "./roosterItem";
 import Klok from "./klok";
-import Deadline from "./deadline";
+
+import Rooster_item from "./roosterItem";
+import WeekRooster_item from "./weekRooster_Item";
+import VandaagRooster from "./rooster/vandaagRooster";
+import DeadlinesAll from "./deadlines/deadlinesAll";
 import {
   weekDay,
   dotW,
@@ -14,15 +17,19 @@ import {
   getDayDiff,
 } from "../../helpers/time";
 import styles from "../../styles/Vandaag.module.css";
+import WeekRooster from "./rooster/weekRooster";
 
-export default function Vandaag() {
+export default function Vandaag(props) {
   const [hours, setHours] = useState(hms.hour);
   const [minutes, setMinutes] = useState(hms.minutes);
   const [seconds, setSeconds] = useState(hms.seconds);
 
+  //rooster useStates
   const [lesVandaag, setLesVandaag] = useState(" ");
   const [roosterInhoud, setRoosterInhoud] = useState(" ");
-  const [deadlineInhoud, setDeadlineInhoud] = useState("");
+  const [roosterSwitch, setRoosterSwitch] = useState(0);
+  const [weekInhoud, setWeekInhoud] = useState("");
+  const [lesSectionInhoud, setLesSectionInhoud] = useState();
 
   //useStates voor klok
   const [preWeekContent, setPreWeekContent] = useState("");
@@ -36,6 +43,11 @@ export default function Vandaag() {
   const [staticHours, setStaticHours] = useState("");
   const [staticMinutes, setStaticMinutes] = useState("");
   const [staticSeconds, setStaticSeconds] = useState("");
+
+  const navigate = (arg) => {
+    console.log("upward vandaag " + arg);
+    props.navigate(arg);
+  };
 
   useEffect(() => {
     setStaticWeekDay(weekDay);
@@ -140,6 +152,35 @@ export default function Vandaag() {
     );
   }
 
+  function ongoingFilter(rooster_item) {
+    return (
+      new Date(rooster_item.date_start) < date &&
+      new Date(rooster_item.date_end) > date
+    );
+  }
+
+  function getRoosterSwitch(arg) {
+    if (arg == roosterSwitch) {
+      return styles.roosterSwitch__active;
+    } else {
+      return "";
+    }
+  }
+  function switchRooster(arg) {
+    setRoosterSwitch(arg);
+    if (arg == 0) {
+      setLesSectionInhoud(
+        <VandaagRooster
+          inhoud={roosterInhoud}
+          les={lesVandaag}
+          slider={sliderOffsetCalc()}
+        />
+      );
+    } else {
+      setLesSectionInhoud(<WeekRooster />);
+    }
+  }
+
   function readRooster(obj) {
     if (obj.roosterInfo.filter(dotWfilter).length != 0) {
       setLesVandaag(styles.rooster__class);
@@ -147,131 +188,15 @@ export default function Vandaag() {
 
     setRoosterInhoud(
       obj.roosterInfo.filter(dotWfilter).map((rooster_item) => {
-        return <Rooster_item data={rooster_item} />;
+        return <Rooster_item data={rooster_item} navigate={navigate} />;
+      })
+    );
+    setWeekInhoud(
+      obj.roosterInfo.filter(ongoingFilter).map((rooster_item) => {
+        return <WeekRooster_item data={rooster_item} navigate={navigate} />;
       })
     );
   }
-
-  function sevenDaysFilter(ddl) {
-    return (
-      getDayDiff(ddl.deadline_date, date) > 1 &&
-      getDayDiff(ddl.deadline_date, date) <= 7
-    );
-  }
-
-  function thirtyDaysFilter(ddl) {
-    return (
-      getDayDiff(ddl.deadline_date, date) > 7 &&
-      getDayDiff(ddl.deadline_date, date) <= 30
-    );
-  }
-
-  function laterFilter(ddl) {
-    return getDayDiff(ddl.deadline_date, date) > 30;
-  }
-
-  function readDeadlines(result) {
-    getDayDiff(date, addDays(date, 7));
-    let assembly = [
-      result.deadlineBasicInfo
-        .filter(
-          (ddl) =>
-            new Date(ddl.deadline_date).toDateString() == date.toDateString()
-        )
-        .map((ddl) => {
-          return (
-            <Deadline
-              name={ddl.deadline_name}
-              date={ddl.deadline_date}
-              class={
-                result.koepelInfo.find(
-                  (koepel) => koepel.koepel_ID == ddl.koepel_ID
-                ).vak_name
-              }
-            />
-          );
-        }),
-      result.deadlineBasicInfo.filter(sevenDaysFilter).map((ddl) => {
-        return (
-          <Deadline
-            name={ddl.deadline_name}
-            date={ddl.deadline_date}
-            class={
-              result.koepelInfo.find(
-                (koepel) => koepel.koepel_ID == ddl.koepel_ID
-              ).vak_name
-            }
-          />
-        );
-      }),
-      result.deadlineBasicInfo.filter(thirtyDaysFilter).map((ddl) => {
-        return (
-          <Deadline
-            name={ddl.deadline_name}
-            date={ddl.deadline_date}
-            class={
-              result.koepelInfo.find(
-                (koepel) => koepel.koepel_ID == ddl.koepel_ID
-              ).vak_name
-            }
-          />
-        );
-      }),
-      result.deadlineBasicInfo.filter(laterFilter).map((ddl) => {
-        return (
-          <Deadline
-            name={ddl.deadline_name}
-            date={ddl.deadline_date}
-            class={
-              result.koepelInfo.find(
-                (koepel) => koepel.koepel_ID == ddl.koepel_ID
-              ).vak_name
-            }
-          />
-        );
-      }),
-    ];
-
-    /*result.deadlineBasicInfo.map((ddl) => {
-      return <Deadline />;
-    });*/
-    setDeadlineInhoud(assembly);
-  }
-
-  function getDeadlineLength(arg) {
-    if (!deadlineInhoud) {
-    } else {
-      return deadlineInhoud[arg].length;
-    }
-  }
-
-  function getInhoudOpacity(arg) {
-    if (!deadlineInhoud) {
-    } else {
-      return deadlineInhoud[arg].length + 0.5;
-    }
-  }
-
-  const deadlineOphalen = async () => {
-    const loginData = {
-      traject: sessionStorage.getItem("traject"),
-    };
-    const JSONLoginData = JSON.stringify(loginData);
-
-    const endpoint = "api/getDeadlineBasic";
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-type": "applications/json",
-      },
-      body: JSONLoginData,
-    };
-
-    const response = await fetch(endpoint, options);
-    const result = await response.json();
-    console.log(result);
-    readDeadlines(result);
-  };
 
   const roosterOphalen = async () => {
     const loginData = {
@@ -293,10 +218,33 @@ export default function Vandaag() {
     readRooster(result);
   };
 
+  function getLesSectionContent() {
+    if (roosterSwitch == 0) {
+      setLesSectionInhoud(
+        <VandaagRooster
+          inhoud={roosterInhoud}
+          les={lesVandaag}
+          slider={sliderOffsetCalc()}
+        />
+      );
+    } else {
+      setLesSectionInhoud(
+        <WeekRooster
+          inhoud={weekInhoud}
+          les={lesVandaag}
+          slider={sliderOffsetCalc()}
+        />
+      );
+    }
+  }
+
   useEffect(() => {
-    deadlineOphalen();
     roosterOphalen();
-  }, []);
+  }, [roosterSwitch]);
+
+  useEffect(() => {
+    getLesSectionContent();
+  }, [roosterInhoud, weekInhoud]);
 
   useEffect(() => {
     setInterval(() => {
@@ -368,54 +316,30 @@ export default function Vandaag() {
 
         <main className={styles.vandaag__sections}>
           <section>
-            <div className={styles.rooster}>
-              <h1 className={styles.rooster__title}>Les vandaag</h1>
-              {roosterInhoud}
-              <p className={styles.rooster__noClass + " " + lesVandaag}>
-                geen geplande lessen vandaag
+            <h3 className={styles.rooster__title}>Lessen</h3>
+            <div className={styles.rooster__options}>
+              <p
+                className={getRoosterSwitch(0)}
+                onClick={() => {
+                  switchRooster(0);
+                }}
+              >
+                Vandaag
               </p>
-              <div
-                className={styles.rooster__slider}
-                style={{ marginTop: sliderOffsetCalc() + "px" }}
-              ></div>
+              <p
+                className={getRoosterSwitch(1)}
+                onClick={() => {
+                  switchRooster(1);
+                }}
+              >
+                Week
+              </p>
             </div>
+            <div className={styles.lesContainer}>{lesSectionInhoud}</div>
           </section>
           <section>
             <h1 className={styles.rooster__title}>Komende Deadlines</h1>
-            <ul className={styles.deadline__container}>
-              <p
-                className={styles.deadlines__splitter}
-                style={{ opacity: getInhoudOpacity(0) }}
-              >
-                <span>Vandaag &emsp;</span>
-                <span>{getDeadlineLength(0)}</span>
-              </p>
-              {deadlineInhoud[0]}
-              <p
-                className={styles.deadlines__splitter}
-                style={{ opacity: getInhoudOpacity(1) }}
-              >
-                <span>Deze week &emsp;</span>
-                <span>{getDeadlineLength(1)}</span>
-              </p>
-              {deadlineInhoud[1]}
-              <p
-                className={styles.deadlines__splitter}
-                style={{ opacity: getInhoudOpacity(2) }}
-              >
-                <span>Deze maand &emsp;</span>
-                <span>{getDeadlineLength(2)}</span>
-              </p>
-              {deadlineInhoud[2]}
-              <p
-                className={styles.deadlines__splitter}
-                style={{ opacity: getInhoudOpacity(3) }}
-              >
-                <span>Later &emsp;</span>
-                <span>{getDeadlineLength(3)}</span>
-              </p>
-              {deadlineInhoud[3]}
-            </ul>
+            <DeadlinesAll navigate={navigate} />
           </section>
         </main>
       </div>

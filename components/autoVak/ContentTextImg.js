@@ -2,6 +2,7 @@ import styles from "../../styles/vakContent.module.css";
 
 import { useRef, useEffect, useState } from "react";
 
+import { parseMarkdown } from "../../helpers/mdParser";
 import ImgPreview from "./ImgPreview";
 
 export default function ContentTextImg(props) {
@@ -30,13 +31,27 @@ export default function ContentTextImg(props) {
     });
   }, []);
 
+  const [htmlReturn, setHtmlReturn] = useState("");
+
+  function getMDContent() {
+    return { __html: htmlReturn };
+  }
+
+  useEffect(() => {
+    const parser = new DOMParser();
+    setHtmlReturn(parseMarkdown(props.data.content_textContent));
+  }, []);
+
   return (
     <div className={styles.content__container}>
       <h3 className={styles.content__title}>{props.data.content_title}</h3>
       <div
         className={styles.content__body + " " + styles.content__body__textImg}
       >
-        <p className={styles.content__text}>{props.data.content_textContent}</p>
+        <p
+          className={styles.content__text}
+          dangerouslySetInnerHTML={getMDContent()}
+        ></p>
         <div
           className={styles.content__img}
           style={{ backgroundImage: "url(" + props.data.content_img_1 + ")" }}
