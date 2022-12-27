@@ -17,7 +17,7 @@ export default function WeekGridItem(props) {
     let calcDay = addDays(date, dayDiff);
     return (
       <>
-        <p>{calcDay.getDate() + "." + calcDay.getMonth()}</p>
+        <h3>{calcDay.getDate() + "." + calcDay.getMonth()}</h3>
         <p>{getAbrWeekday(calcDay.getDay())}</p>
       </>
     );

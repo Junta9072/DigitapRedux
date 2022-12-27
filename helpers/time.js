@@ -157,6 +157,27 @@ function getDayDiff(date1, date2) {
   );
 }
 
+function getMonthLength(arg) {
+  let monthLengthArray = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  return monthLengthArray[arg];
+}
+
+function getAcademicYear(date) {
+  if (date.getMonth() > 6) {
+    return (
+      <>
+        {date.getFullYear().toString().slice(2, 4)}&ensp;&mdash;&ensp;
+        {(date.getFullYear() + 1).toString().slice(2, 4)}
+      </>
+    );
+  } else {
+    <>
+      {(date.getFullYear() - 1).toString().slice(2, 4)}&ensp;&mdash;&ensp;
+      {date.getFullYear().toString().slice(2, 4)}
+    </>;
+  }
+}
+
 export {
   weekDay,
   dotW,
@@ -170,4 +191,6 @@ export {
   filterDate,
   getDayDiff,
   getAbrWeekday,
+  getMonthLength,
+  getAcademicYear,
 };
