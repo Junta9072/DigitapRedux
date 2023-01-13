@@ -146,6 +146,7 @@
 
 .month__grid {
   width: calc(100% - 86px);
+  height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-auto-rows: 1fr;
@@ -157,6 +158,9 @@
 
 .month__item {
   padding: 4px;
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .month__dayCol {
@@ -167,4 +171,185 @@
   align-items: flex-start;
   justify-content: flex-end;
   border-right: 2px solid black;
+}
+
+.rooster__lesItem {
+  border-left: 2px solid var(--black);
+  color: black;
+  width: fit-content;
+  font-size: 9pt;
+  font-weight: 700;
+  padding: 2px 1px;
+  padding-right: 4px;
+  padding-left: 2px;
+  margin-bottom: 2px;
+}
+
+.rooster__ddlItem {
+  border-left: 2px solid var(--red500);
+  color: black;
+  width: fit-content;
+  font-size: 9pt;
+  font-weight: 700;
+  padding: 2px 1px;
+  padding-right: 4px;
+  padding-left: 2px;
+  margin-bottom: 2px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.modal__clickCover {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0vw;
+  left: 0vw;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 470px;
+}
+
+.modal__off {
+  display: none;
+}
+
+.modal__on {
+  display: block;
+}
+
+.modal__on .modal .modal__main {
+  animation: modalGrow 0.1s 1 linear both;
+}
+
+@keyframes modalGrow {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 500px;
+  }
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 500px;
+  overflow: hidden;
+}
+
+.modal__main {
+  width: auto;
+  border: var(--border);
+  height: calc(100vh - 168px);
+  background-color: var(--white100);
+  transition: var(--fastTr);
+}
+
+.modal__date {
+  font-weight: 700;
+  font-size: 18pt;
+}
+
+.modal__title {
+  padding: 8px;
+  border-bottom: var(--border);
+}
+
+.modal__close {
+  width: 40px;
+  height: 40px;
+  border: var(--border);
+  align-self: flex-end;
+  background-color: var(--red500);
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white100);
+  font-family: "Noto Serif";
+  font-style: italic;
+}
+
+.modal__list {
+  padding: 4px 0px;
+}
+
+.modal__subtitle {
+  font-size: 16pt;
+  padding: 4px;
+  font-family: "Noto Serif";
+  color: var(--red500);
+  font-style: italic;
+  margin: 8px 0px;
+}
+
+.modal__les {
+  display: inline;
+  border: var(--border);
+  border-left: none;
+  padding: 2px 8px;
+  font-size: 12pt;
+  font-weight: 700;
+  height: 40px;
+}
+
+.modal__les:last-child {
+  border-right: var(--border);
+}
+
+.modal__hour {
+  font-size: 10pt;
+  color: var(--red500);
+}
+
+.modal__geenLes {
+  padding-left: 8px;
+}
+
+.modal__ddl {
+  height: 40px;
+  border: var(--border);
+  border-left: none;
+  border-right: none;
+  display: grid;
+  grid-template-columns: 80px auto 80px 40px;
+}
+
+.modal__ddlVak {
+  height: 100%;
+  font-weight: 700;
+  border-right: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__ddlName {
+  border-right: var(--border);
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  justify-content: flex-start;
+}
+
+.modal__ddlTime {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red500);
+}
+
+.modal__ddlButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: var(--border);
 }

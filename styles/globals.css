@@ -12,6 +12,10 @@
   --red500: #ef233c;
   --red600: #d90429;
 
+  --black: black;
+
+  --border: 2px solid black;
+
   --fastTr: 0.2s ease-out;
 }
 

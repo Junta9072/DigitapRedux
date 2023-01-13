@@ -166,15 +166,18 @@ function getAcademicYear(date) {
   if (date.getMonth() > 6) {
     return (
       <>
-        {date.getFullYear().toString().slice(2, 4)}&ensp;&mdash;&ensp;
+        {date.getFullYear().toString().slice(2, 4)}
+        &ensp;&mdash;&ensp;
         {(date.getFullYear() + 1).toString().slice(2, 4)}
       </>
     );
   } else {
-    <>
-      {(date.getFullYear() - 1).toString().slice(2, 4)}&ensp;&mdash;&ensp;
-      {date.getFullYear().toString().slice(2, 4)}
-    </>;
+    return (
+      <>
+        {(date.getFullYear() - 1).toString().slice(2, 4)}&ensp;&mdash;&ensp;
+        {date.getFullYear().toString().slice(2, 4)}
+      </>
+    );
   }
 }
 
