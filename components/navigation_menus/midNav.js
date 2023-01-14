@@ -23,9 +23,16 @@ export default function MidNav(props) {
     setActiveVak(arg);
   };
 
-  const navigate = (arg) => {
-    setRightNavSwitch(arg + 1);
-    setActiveVak(arg + 1);
+  const navigate = (arg, section) => {
+    console.log("arg=" + arg + " section=" + section);
+    if (section) {
+      props.sectionChange(section - 1);
+      setRightNavSwitch(arg + 1);
+      setActiveVak(arg + 1);
+    } else {
+      setRightNavSwitch(arg + 1);
+      setActiveVak(arg + 1);
+    }
   };
 
   useEffect(() => {

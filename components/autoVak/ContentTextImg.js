@@ -9,6 +9,7 @@ export default function ContentTextImg(props) {
   const [imgPreviewToggle, setImgPreviewToggle] = useState(false);
   const [imgPreviewSrc, setImgPreviewSrc] = useState("");
   const imageRef = useRef();
+  const [textTitle, setTextTitle] = useState("");
 
   function previewImage(ref) {
     console.log(ref.style.backgroundImage);
@@ -29,6 +30,14 @@ export default function ContentTextImg(props) {
     imageRef.current.addEventListener("click", function () {
       previewImage(imageRef.current);
     });
+
+    if (props.data.content_title.length != 0) {
+      setTextTitle(
+        <h3 className={styles.content__title}>{props.data.content_title}</h3>
+      );
+    } else {
+      setTextTitle("");
+    }
   }, []);
 
   const [htmlReturn, setHtmlReturn] = useState("");
@@ -44,7 +53,7 @@ export default function ContentTextImg(props) {
 
   return (
     <div className={styles.content__container}>
-      <h3 className={styles.content__title}>{props.data.content_title}</h3>
+      {textTitle}
       <div
         className={styles.content__body + " " + styles.content__body__textImg}
       >

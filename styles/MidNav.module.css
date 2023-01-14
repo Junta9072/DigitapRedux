@@ -5,7 +5,7 @@
 
 .midNav__content {
   overflow-y: auto;
-  border-right: 2px solid black;
+  border-right: var(--border);
 }
 
 .md18 {
@@ -27,7 +27,7 @@
 .midNav__title {
   margin-top: 44px;
   height: 86px;
-  border-bottom: 2px solid black;
+  border-bottom: var(--border);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -61,7 +61,7 @@
   display: grid;
   grid-template-columns: 40px auto 40px;
   transition: var(--fastTr);
-  border-bottom: 2px black solid;
+  border-bottom: var(--border);
 }
 
 .vakken__item.admin__item {
@@ -107,7 +107,7 @@
   grid-gap: 2px;
   grid-template-columns: auto auto 42px 42px;
   transition: var(--fastTr);
-  border-bottom: 2px solid black;
+  border-bottom: var(--border);
   font-family: "Noto serif";
   font-style: italic;
 }
@@ -123,7 +123,7 @@
 .input__container {
   display: grid;
   grid-template-columns: 42px auto;
-  border-bottom: solid 2px black;
+  border-bottom: var(--border);
 }
 
 .vakken__input {

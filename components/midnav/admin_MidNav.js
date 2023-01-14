@@ -5,7 +5,15 @@ export default function Admin_MidNav(props) {
   return (
     <>
       <ul className={styles.vakken__general}>
-        <li className={styles.vakken__item + "  " + styles.admin__item}>
+        <li
+          className={
+            styles.vakken__item +
+            "  " +
+            styles.admin__item +
+            " " +
+            styles.vakken__active
+          }
+        >
           <i className={"material-icons-outlined " + styles.md24}>person</i>
           <span>Mijn dossier</span>
         </li>

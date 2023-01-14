@@ -4,7 +4,7 @@ import styles from "../../styles/MidNav.module.css";
 export default function Account_MidNav() {
   return (
     <ul className={styles.vakken__general}>
-      <li className={styles.vakken__item + " " + styles.admin__item}>
+      <li className={styles.vakken__item + " " + styles.vakken__active}>
         <i className={"material-icons-outlined " + styles.md24}>save</i>
         <span>Mijn gegevens</span>
       </li>

@@ -91,7 +91,7 @@ export default function LeftNav() {
         <div className={styles.fillEnd}></div>
       </ul>
       <div className={midStyles.midNav__container}>
-        <MidNav inhoud={activeContent} />
+        <MidNav inhoud={activeContent} sectionChange={changeActive} />
       </div>
     </div>
   );

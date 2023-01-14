@@ -1,0 +1,41 @@
+.autoAdmin__container {
+  display: grid;
+  grid-template-columns: auto 256px;
+  overflow: hidden;
+}
+
+.autoAdmin__scrollable {
+  overflow-y: overlay;
+}
+
+.autoAdmin__header {
+  height: 130px;
+  display: grid;
+  grid-template-rows: 86px;
+  width: 100%;
+  min-width: 520px;
+  border-bottom: var(--border);
+}
+
+.autoAdmin__abr {
+  margin-left: 21px;
+  font-size: 88pt;
+  font-family: "Noto serif";
+  font-style: italic;
+  color: transparent;
+  grid-area: 1 /1 / span 1 / span 1;
+  opacity: 0.8;
+  text-align: left;
+  -webkit-text-stroke: 1px var(--red500);
+}
+
+.autoAdmin__title {
+  margin-left: 21px;
+  height: 86px;
+  padding-top: 64px;
+  font-size: 32pt;
+  font-weight: 700;
+  padding-left: 8px;
+  grid-area: 1 /1 / span 1 / span 1;
+  z-index: 2;
+}

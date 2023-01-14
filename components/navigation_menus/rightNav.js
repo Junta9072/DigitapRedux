@@ -24,9 +24,9 @@ import AboutDigitap from "../rightNav/aboutDigitap";
 import { useState, useEffect } from "react";
 
 export default function RightNav(props) {
-  const navigate = (arg) => {
+  const navigate = (arg, section) => {
     console.log("upward RN " + arg);
-    props.navigate(arg);
+    props.navigate(arg, section);
   };
   const [rightNavContent, setRightNavContent] = useState(
     <Vandaag navigate={navigate} />
@@ -42,29 +42,17 @@ export default function RightNav(props) {
 
   function roosterRightNavSwitch() {
     if (props.inhoud % 2 == 0) {
-      setRightNavContent(<WeekOverview />);
+      setRightNavContent(<WeekOverview navigate={navigate} />);
     }
 
     // if the number is odd
     else {
-      setRightNavContent(<MonthOverview />);
+      setRightNavContent(<MonthOverview navigate={navigate} />);
     }
   }
 
   function adminRightNavSwitch() {
-    switch (props.inhoud) {
-      case 0:
-        setRightNavContent(<AdminRightNav />);
-        break;
-      /*
-        case 1:
-          setRightNavContent(<autoAdmin />)
-          break;
-          */
-
-      default:
-        break;
-    }
+    setRightNavContent(<AdminRightNav />);
   }
 
   function toolsRightNavSwitch() {

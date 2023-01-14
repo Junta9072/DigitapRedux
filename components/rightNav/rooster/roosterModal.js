@@ -35,7 +35,7 @@ export default function RoosterModal(props) {
                 <span>{les.vak_name}</span>
                 &ensp;
                 <span className={styles.modal__hour}>
-                  {les.hour_start}u -{les.hour_end}u
+                  {les.hour_start}h -{les.hour_end}h
                 </span>
               </p>
             );
@@ -73,10 +73,15 @@ export default function RoosterModal(props) {
                 <p className={styles.modal__ddlName}>{ddl.deadline_name}</p>
                 <p className={styles.modal__ddlTime}>
                   {getDdlTime(dDate.getHours()) +
-                    ":" +
+                    "h" +
                     getDdlTime(dDate.getMinutes())}
                 </p>
-                <div className={styles.modal__ddlButton}>
+                <div
+                  className={styles.modal__ddlButton}
+                  onClick={() => {
+                    props.navigate(ddl.koepel_ID, 1);
+                  }}
+                >
                   <i className={"material-icons-outlined " + styles.md24}>
                     open_in_new
                   </i>

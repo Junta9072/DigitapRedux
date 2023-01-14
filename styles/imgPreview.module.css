@@ -20,11 +20,11 @@
 }
 
 .content__imagePreview__active img {
-  border: 2px solid black;
+  border: var(--border);
 }
 
 .content__imagePreview__active p {
-  border: 2px solid black;
+  border: var(--border);
   border-top: none;
   font-family: "noto serif";
   font-style: italic;
