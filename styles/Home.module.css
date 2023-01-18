@@ -70,6 +70,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 96px;
+  height: 96px;
 }
 
 .form__submit i {
@@ -84,7 +86,7 @@
   font-family: "Inter";
   font-weight: 700;
   border: var(--border);
-  transform: translate(-2px, -4px);
+  transform: translate(-96px, -84px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,5 +130,5 @@
 }
 
 .form__new {
-  transform: translateY(-6px) translateX(-80px);
+  transform: translateY(-6px) translateX(-96px);
 }
