@@ -8,11 +8,10 @@ export default function TinyDeadline(props) {
   const [staticDate, setStaticDate] = useState("p");
 
   function renderTinyDeadline(result) {
-    let tiny = result.find((ddl) => ddl.ID == props.id);
+    let tiny = result.find((ddl) => ddl.deadline_ID == props.id);
     console.log(props.id);
     console.log(tiny);
-
-    console.log(tiny);
+    console.log(tiny.deadline_date);
 
     return (
       <div className={styles.tinyDeadline}>
@@ -53,19 +52,6 @@ export default function TinyDeadline(props) {
     const result = await response.json();
     console.log(result);
     setDeadlineContent(renderTinyDeadline(result.deadlineBasicInfo));
-
-    let tiny = result.deadlineBasicInfo.find((ddl) => ddl.ID == props.id);
-    let ddlDate = new Date(tiny.deadline_date);
-
-    setStaticDate(
-      ddlDate.getDate() +
-        " " +
-        getTxtMonth(ddlDate.getMonth()) +
-        " " +
-        ddlDate.getHours() +
-        "u" +
-        ddlDate.getMinutes()
-    );
   };
 
   useEffect(() => {

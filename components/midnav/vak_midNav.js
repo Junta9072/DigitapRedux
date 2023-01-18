@@ -126,7 +126,7 @@ export default function Vak_MidNav(props) {
         >
           <i className={"material-icons-outlined " + styles.md24}>today</i>
           <span>Overzicht</span>
-          <div className={styles.vakken__No}>0</div>
+          <div className={styles.vakken__No}></div>
         </li>
       </ul>
       <ul class={styles.midNav__classes}>{trajectListing}</ul>

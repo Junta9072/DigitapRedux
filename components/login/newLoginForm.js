@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "../../styles/Home.module.css";
 
 export default function LoginForm() {
   const loginSubmit = async (event) => {
@@ -28,20 +29,50 @@ export default function LoginForm() {
 
   return (
     <>
-      <form onSubmit={loginSubmit}>
-        <label for="username">Username:</label>
+      <form onSubmit={loginSubmit} className={styles.login__form}>
+        <label
+          for="username"
+          className={styles.form__label + " " + styles.form__userLabel}
+        >
+          Username
+        </label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          className={styles.form__input + " " + styles.form__userInput}
+        />
+        <label
+          for="password"
+          className={styles.form__label + " " + styles.form__passLabel}
+        >
+          Password
+        </label>
+        <input
+          type="text"
+          id="password"
+          name="password"
+          className={styles.form__input + " " + styles.form__passInput}
+        />
+        <label
+          for="repeatPassword"
+          className={styles.form__label + " " + styles.form__mailLabel}
+        >
+          Email:
+        </label>
         <br />
-        <input type="text" id="username" name="username" />
+        <input
+          className={styles.form__input + " " + styles.form__mailInput}
+          type="text"
+          id="email"
+          name="email"
+        />
         <br />
-        <label for="password">Wachtwoord:</label>
-        <br />
-        <input type="text" id="password" name="password" />
-        <br />
-        <label for="repeatPassword">Email:</label>
-        <br />
-        <input type="text" id="email" name="email" />
-        <br />
-        <button type="submit">login</button>
+        <button type="submit" className={styles.form__submit}>
+          <i className={"material-icons-outlined " + styles.md24}>
+            arrow_forward
+          </i>
+        </button>
       </form>
     </>
   );

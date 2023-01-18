@@ -17,6 +17,7 @@
   --border: 2px solid black;
 
   --fastTr: 0.2s ease-out;
+  --letter: 15px;
 }
 
 *::selection {

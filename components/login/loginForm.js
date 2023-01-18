@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import styles from "../../styles/Home.module.css";
 
-export default function LoginForm() {
+export default function LoginForm(props) {
   const loginSubmit = async (event) => {
     event.preventDefault();
 
@@ -29,16 +30,40 @@ export default function LoginForm() {
 
   return (
     <>
-      <form onSubmit={loginSubmit}>
-        <label for="username">Username:</label>
-        <br />
-        <input type="text" id="username" name="username" />
-        <br />
-        <label for="password">Wachtwoord:</label>
-        <br />
-        <input type="text" id="password" name="password" />
-        <br />
-        <button type="submit">login</button>
+      <form onSubmit={loginSubmit} className={styles.login__form}>
+        <label
+          for="username"
+          className={styles.form__label + " " + styles.form__userLabel}
+        >
+          Username
+        </label>
+
+        <input
+          className={styles.form__input + " " + styles.form__userInput}
+          type="text"
+          id="username"
+          name="username"
+        />
+
+        <label
+          for="password"
+          className={styles.form__label + " " + styles.form__passLabel}
+        >
+          Password
+        </label>
+
+        <input
+          className={styles.form__input + " " + styles.form__passInput}
+          type="password"
+          id="password"
+          name="password"
+        />
+
+        <button type="submit" className={styles.form__submit}>
+          <i className={"material-icons-outlined " + styles.md24}>
+            arrow_forward
+          </i>
+        </button>
       </form>
     </>
   );
