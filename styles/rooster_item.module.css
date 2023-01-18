@@ -43,8 +43,17 @@
 }
 
 .item__ongoingClass .item__info {
-  background-color: var(--red500);
-  color: var(--white100);
+  background-image: url("../public/LIVE.svg");
+  background-repeat: no-repeat;
+  background-position: 97% center;
+  background-size: 15%;
+}
+
+.item__ongoingClass .week__info {
+  background-image: url("../public/LIVE.svg");
+  background-repeat: no-repeat;
+  background-position: 97% center;
+  background-size: 30%;
 }
 
 .item__ongoingClass .item__time_start,

@@ -1,4 +1,4 @@
-import styles from "../../styles/vakContent.module.css";
+import styles from "../../../styles/vakContent.module.css";
 
 export default function ContentAnchor(props) {
   let extra = JSON.parse(props.data.content_extra);

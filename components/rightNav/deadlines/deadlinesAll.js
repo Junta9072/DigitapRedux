@@ -40,9 +40,10 @@ export default function DeadlinesAll(props) {
           (ddl) =>
             new Date(ddl.deadline_date).toDateString() == date.toDateString()
         )
-        .map((ddl) => {
+        .map((ddl, i) => {
           return (
             <Deadline
+              key={i}
               name={ddl.deadline_name}
               date={ddl.deadline_date}
               class={
@@ -54,9 +55,10 @@ export default function DeadlinesAll(props) {
             />
           );
         }),
-      result.deadlineBasicInfo.filter(sevenDaysFilter).map((ddl) => {
+      result.deadlineBasicInfo.filter(sevenDaysFilter).map((ddl, i) => {
         return (
           <Deadline
+            key={i}
             koepel={ddl.koepel_ID}
             name={ddl.deadline_name}
             date={ddl.deadline_date}
@@ -69,9 +71,10 @@ export default function DeadlinesAll(props) {
           />
         );
       }),
-      result.deadlineBasicInfo.filter(thirtyDaysFilter).map((ddl) => {
+      result.deadlineBasicInfo.filter(thirtyDaysFilter).map((ddl, i) => {
         return (
           <Deadline
+            key={i}
             koepel={ddl.koepel_ID}
             name={ddl.deadline_name}
             date={ddl.deadline_date}
@@ -84,9 +87,10 @@ export default function DeadlinesAll(props) {
           />
         );
       }),
-      result.deadlineBasicInfo.filter(laterFilter).map((ddl) => {
+      result.deadlineBasicInfo.filter(laterFilter).map((ddl, i) => {
         return (
           <Deadline
+            key={i}
             koepel={ddl.koepel_ID}
             name={ddl.deadline_name}
             date={ddl.deadline_date}

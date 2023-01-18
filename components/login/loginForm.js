@@ -23,6 +23,7 @@ export default function LoginForm() {
     const result = await response.json();
     console.log(result);
     sessionStorage.setItem("traject", result.loginResults[0].traject_ID);
+    sessionStorage.setItem("lector", result.loginResults[0].admin);
     window.location.href = result.url;
   };
 

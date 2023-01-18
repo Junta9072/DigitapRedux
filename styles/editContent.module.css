@@ -1,0 +1,188 @@
+.ec__bgCover,
+.nib__bgCover,
+.dm__bgCover {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ec__container,
+.nib__container,
+.dm__container {
+  width: 50%;
+  min-height: 126px;
+}
+
+.nib__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.ec__title,
+.nib__title,
+.dm__title {
+  border: 2px solid black;
+  border-bottom: none;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 4px 16px;
+  color: var(--white150);
+  font-family: "noto serif";
+  font-weight: 500;
+  font-style: italic;
+  width: fit-content;
+  min-width: fit-content;
+  background-color: var(--red500);
+}
+
+.ec__content,
+.nib__content,
+.dm__content {
+  background-color: var(--white150);
+  min-height: 126px;
+  border: var(--border);
+}
+
+.ec__field {
+  display: grid;
+  grid-template-columns: 144px auto;
+  height: 40px;
+  border-bottom: var(--border);
+}
+
+.dm__field {
+  display: grid;
+  grid-template-columns: 153px auto;
+  height: 40px;
+  border-bottom: var(--border);
+}
+
+.ec__label,
+.dm__label {
+  border-right: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ec__input,
+.dm__input {
+  background-color: transparent;
+  color: var(--red500);
+  font-family: "Noto Serif";
+  font-style: italic;
+  border: none;
+}
+
+.dm__input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  color: var(--red500);
+}
+
+.ec__buttons {
+  display: grid;
+  grid-template-columns: 144px 1fr 1fr;
+  height: 40px;
+}
+
+.ec__buttons * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ec__buttons i {
+  font-size: 14pt;
+  padding-right: 4px;
+}
+
+.ec__submit,
+.ec__delete {
+  background-color: var(--red500);
+  border: none;
+  font-family: "Noto Serif";
+  font-style: italic;
+}
+
+.dm__submit {
+  width: 100%;
+  height: 40px;
+  background-color: var(--red500);
+  border: none;
+  font-family: "Noto Serif";
+  font-style: italic;
+}
+
+.ec__reset {
+  background-color: transparent;
+  color: var(--red500);
+  font-family: "Noto Serif";
+  font-style: italic;
+  border: none;
+}
+
+.ec__reset,
+.ec__delete {
+  border-right: var(--border);
+  border-bottom: none;
+}
+
+.ec__unChanged {
+  color: rgba(255, 255, 255, 0.5);
+  background-color: var(--red300);
+}
+
+.nib {
+  border: 2px solid black;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 4px 16px;
+  color: var(--white150);
+  font-family: "noto serif";
+  font-weight: 500;
+  font-style: italic;
+  width: fit-content;
+  min-width: fit-content;
+  background-color: var(--red500);
+  font-size: 12pt;
+  margin-bottom: 40px;
+}
+
+.nib__buttons {
+  height: 126px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nib__buttons * {
+  height: 40px;
+  min-width: 80px;
+  background-color: var(--white150);
+  border: var(--border);
+  border-right: none;
+  color: var(--red500);
+  font-style: italic;
+  font-family: "Noto Serif";
+}
+
+.nib__buttons *:last-of-type {
+  border-right: var(--border);
+}

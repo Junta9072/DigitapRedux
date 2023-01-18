@@ -7,6 +7,7 @@
 .autoAdmin__container {
   display: grid;
   grid-template-columns: 100%;
+  overflow-y: overlay;
 }
 
 .autoVak__scrollable {
@@ -260,10 +261,134 @@
   font-size: 10pt;
 }
 
-.autoVak__scrollable i {
+.autoVak__content b {
+  font-weight: bold;
+}
+
+.tinyDeadline {
+  height: auto;
+}
+
+.tinyDdl__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  padding: 16px;
+  padding-top: 0px;
+}
+
+.tinyDdl__header * {
+  display: inline;
+  margin-top: 16px;
+}
+
+.tinyDdl__desc {
+  padding: 0px 16px;
+}
+
+.tinyDeadline .dragDrop__container {
+  margin-top: 16px;
+  padding: 8px;
+  border-top: var(--border);
+}
+
+.dragDrop__parking {
+  height: 126px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.dragDrop__icon {
+  font-size: 48pt;
+  -webkit-text-stroke: 1px var(--red500);
+  color: transparent;
+}
+
+.dragDrop__text {
+  font-family: "Noto Serif";
+  font-style: italic;
+  color: var(--red500);
+  line-height: 1.3;
+  text-align: center;
+  padding-bottom: 16px;
+}
+
+.dragDrop__fileOpen {
+  font-family: "Noto Serif";
+  font-style: italic;
+  color: var(--red500);
+  line-height: 1.3;
+  text-decoration: underline;
+}
+
+.tinyDeadline .dragDrop__queueItem {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 40px auto 80px 40px;
+  border: var(--border);
+  border-bottom: none;
+  height: 40px;
+}
+
+.dragDrop__queueItem:last-of-type {
+  border-bottom: var(--border);
+}
+
+.dragDrop__queueItem
+  *:not(.dragDrop__fileRemove, i, .dragDrop__fileExt, .dragDrop__fileTinyName) {
+  border-right: var(--border);
+}
+
+.dragDrop__queueItem * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dragDrop__fileName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 8px;
+}
+
+.dragDrop__fileSize {
+  white-space: nowrap;
+  padding: 0px 4px;
+}
+
+.dragDrop__fileExt {
+  font-family: "Noto Serif";
+  color: var(--red500);
+}
+
+.dragDrop__fileRemove {
+  background-color: var(--red500);
+  color: var(--white150);
+  font-family: "Noto Serif";
   font-style: italic;
 }
 
-.autoVak__scrollable b {
-  font-weight: bold;
+.tinyDeadline .dragDrop__commit {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border);
+  border-top: none;
+  background-color: var(--red500);
+  color: var(--white150);
+  font-family: "Noto Serif";
+  font-style: italic;
+}
+
+.dragDrop__locked li {
+  opacity: 0.5;
+  pointer-events: none;
 }

@@ -1,4 +1,4 @@
-import styles from "../../styles/vakContent.module.css";
+import styles from "../../../styles/vakContent.module.css";
 
 export default function ContentGroup(props) {
   return (

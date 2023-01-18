@@ -29,6 +29,10 @@
   line-height: 14pt;
 }
 
+.content__text i {
+  font-style: italic;
+}
+
 .content__title {
   border: 2px solid black;
   border-bottom: none;
@@ -85,4 +89,8 @@
 .content__text a {
   color: var(--red500);
   text-decoration: underline;
+}
+
+.tinyContent__button {
+  height: 40px;
 }

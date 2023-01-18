@@ -205,7 +205,7 @@
   font-weight: 500;
   font-style: italic;
   width: fit-content;
-  min-width: 126px;
+  min-width: 111px;
   background-color: var(--red500);
 }
 
@@ -312,8 +312,8 @@
 }
 
 .rooster__options .roosterSwitch__active {
-  background-color: var(--red500);
-  color: var(--white100);
+  color: var(--red500);
+  font-weight: 900;
   font-family: "noto serif";
   font-style: italic;
 }

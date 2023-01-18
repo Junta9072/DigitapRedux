@@ -105,7 +105,7 @@
   background-color: transparent;
   display: grid;
   grid-gap: 2px;
-  grid-template-columns: auto auto 42px 42px;
+  grid-template-columns: 42px auto;
   transition: var(--fastTr);
   border-bottom: var(--border);
   font-family: "Noto serif";
@@ -137,8 +137,32 @@
   border-radius: 0px;
 }
 
-.vakken__title {
-  padding-left: 48px;
+.vakken__icon {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+}
+
+.vakken__imgContainer {
+  grid-area: 1/1 / span 1 / span 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vakken__img {
+  width: 20px;
+  height: 20px;
+}
+
+.vakken__number {
+  grid-area: 1/1 / span 1 / span 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-text-stroke: 2px var(--red500);
+  color: transparent;
+  font-size: 20pt;
+  font-weight: 900;
 }
 
 .vakken__active {
@@ -147,6 +171,10 @@
   font-family: "Noto serif";
   font-weight: 900;
   font-style: italic;
+}
+
+.vakken__active .vakken__img {
+  filter: invert(1);
 }
 
 .vakken__active i {

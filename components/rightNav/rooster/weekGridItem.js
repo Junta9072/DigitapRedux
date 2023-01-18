@@ -34,7 +34,7 @@ export default function WeekGridItem(props) {
     setDayDeadlines(
       props.ddl.map((ddl) => {
         let dDate = new Date(ddl.deadline_date);
-        console.log(dDate);
+
         if (dDate.getDay() == props.day) {
           return (
             <li className={styles.weekday__ddl}>

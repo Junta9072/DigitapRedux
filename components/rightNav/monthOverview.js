@@ -8,7 +8,7 @@ import styles from "../../styles/rooster.module.css";
 import MonthGridItem from "./rooster/monthGridItem";
 import RoosterModal from "./rooster/roosterModal";
 
-export default function MonthOverview() {
+export default function MonthOverview(props) {
   const [splitMonth, setSplitMonth] = useState("");
   const [calenderItems, setCalenderItems] = useState("");
   const [staticTxtMonth, setStaticTxtMonth] = useState("");
@@ -27,6 +27,11 @@ export default function MonthOverview() {
   const [modalTrigger, setModalTrigger] = useState(false);
 
   let date = new Date();
+
+  const navigate = (arg, section) => {
+    console.log(arg, section);
+    props.navigate(arg, section);
+  };
 
   function checkOngoing(arg) {
     if (arg + 1 == date.getDate()) {
@@ -250,6 +255,7 @@ export default function MonthOverview() {
         {calenderItems}
       </div>
       <RoosterModal
+        navigate={navigate}
         data={modalProp}
         vis={modalTrigger}
         modal={toggleModal}

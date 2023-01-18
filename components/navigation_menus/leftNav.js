@@ -20,6 +20,15 @@ export default function LeftNav() {
 
   const changeActive = (num) => {
     setActiveContent(num);
+    console.log("goin to " + num);
+    let prev = JSON.parse(sessionStorage.getItem("nav"));
+    sessionStorage.setItem(
+      "nav",
+      JSON.stringify({
+        section: num,
+        rightNav: prev.rightNav,
+      })
+    );
   };
 
   const toggleSize = () => {
@@ -39,6 +48,14 @@ export default function LeftNav() {
       return;
     }
   }
+
+  useEffect(() => {
+    if (sessionStorage.getItem("nav")) {
+      console.log(JSON.parse(sessionStorage.getItem("nav")));
+      let data = JSON.parse(sessionStorage.getItem("nav"));
+      changeActive(data.section);
+    }
+  }, []);
 
   useEffect(() => {
     collapsed();

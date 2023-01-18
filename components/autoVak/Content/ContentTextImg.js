@@ -1,9 +1,9 @@
-import styles from "../../styles/vakContent.module.css";
+import styles from "../../../styles/vakContent.module.css";
 
 import { useRef, useEffect, useState } from "react";
 
-import { parseMarkdown } from "../../helpers/mdParser";
-import ImgPreview from "./ImgPreview";
+import { parseMarkdown } from "../../../helpers/mdParser";
+import ImgPreview from "./../ImgPreview";
 
 export default function ContentTextImg(props) {
   const [imgPreviewToggle, setImgPreviewToggle] = useState(false);

@@ -26,7 +26,7 @@ export default function Vandaag(props) {
 
   //rooster useStates
   const [lesVandaag, setLesVandaag] = useState(" ");
-  const [roosterInhoud, setRoosterInhoud] = useState(" ");
+  const [roosterInhoud, setRoosterInhoud] = useState("-");
   const [roosterSwitch, setRoosterSwitch] = useState(0);
   const [weekInhoud, setWeekInhoud] = useState("");
   const [lesSectionInhoud, setLesSectionInhoud] = useState();
@@ -88,10 +88,10 @@ export default function Vandaag(props) {
     for (let i = 0; i < postWeek; i++) {
       assembly.push("");
     }
-    let postweekReturn = assembly.map((day) => {
+    let postweekReturn = assembly.map((day, i) => {
       counter = counter - 1;
       return (
-        <div className={styles.weekView__weekDay}>
+        <div className={styles.weekView__weekDay} key={i}>
           <p className={styles.weekView__txtDay}>
             {getWeekDay(new Date(addDays(date, -counter)).getDay())}
           </p>
@@ -109,7 +109,6 @@ export default function Vandaag(props) {
   }
 
   function getColumnStyling(currentDay) {
-    console.log(dotW);
     let styles = {};
     let days = [0, 1, 2, 3, 4, 5, 6]; // Sunday is 0, Monday is 1, etc.
 
@@ -126,7 +125,7 @@ export default function Vandaag(props) {
 
     // Set the grid-template-columns property to the string of column widths
     styles["grid-template-columns"] = columns.join(" ");
-    console.log(styles);
+
     setWeekViewGrid(styles["grid-template-columns"]);
   }
 
@@ -187,13 +186,15 @@ export default function Vandaag(props) {
     }
 
     setRoosterInhoud(
-      obj.roosterInfo.filter(dotWfilter).map((rooster_item) => {
-        return <Rooster_item data={rooster_item} navigate={navigate} />;
+      obj.roosterInfo.filter(dotWfilter).map((rooster_item, i) => {
+        return <Rooster_item data={rooster_item} navigate={navigate} key={i} />;
       })
     );
     setWeekInhoud(
-      obj.roosterInfo.filter(ongoingFilter).map((rooster_item) => {
-        return <WeekRooster_item data={rooster_item} navigate={navigate} />;
+      obj.roosterInfo.filter(ongoingFilter).map((rooster_item, i) => {
+        return (
+          <WeekRooster_item data={rooster_item} navigate={navigate} key={i} />
+        );
       })
     );
   }
@@ -215,6 +216,7 @@ export default function Vandaag(props) {
 
     const response = await fetch(endpoint, options);
     const result = await response.json();
+    console.log(result);
     readRooster(result);
   };
 

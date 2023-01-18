@@ -19,13 +19,17 @@ export default function MidNav(props) {
 
   const setRightNav = (arg) => {
     console.log("catch!" + arg);
+    let prev = JSON.parse(sessionStorage.getItem("nav"));
+    prev.rightNav[props.inhoud] = arg;
+    let post = JSON.stringify(prev);
+    sessionStorage.setItem("nav", post);
     setRightNavSwitch(arg);
     setActiveVak(arg);
   };
 
   const navigate = (arg, section) => {
     console.log("arg=" + arg + " section=" + section);
-    if (section) {
+    if (section != "" || section != undefined) {
       props.sectionChange(section - 1);
       setRightNavSwitch(arg + 1);
       setActiveVak(arg + 1);
@@ -34,6 +38,30 @@ export default function MidNav(props) {
       setActiveVak(arg + 1);
     }
   };
+
+  useEffect(() => {}, []);
+
+  useEffect(() => {
+    console.log("check for sStorage");
+    if (sessionStorage.getItem("nav")) {
+      let data = JSON.parse(sessionStorage.getItem("nav"));
+      setRightNavSwitch(data.rightNav[props.inhoud]);
+      setActiveVak(data.rightNav[props.inhoud]);
+
+      if (props.inhoud == 0 || props.inhoud == 3) {
+        setActiveVak(data.rightNav[props.inhoud] + 1);
+        setRightNavSwitch(data.rightNav[props.inhoud]);
+      }
+    } else {
+      setRightNavSwitch(0);
+      setActiveVak(0);
+
+      if (props.inhoud == 0 || props.inhoud == 3) {
+        setActiveVak(1);
+        setRightNavSwitch(0);
+      }
+    }
+  }, [props.inhoud]);
 
   useEffect(() => {
     switch (props.inhoud) {
@@ -54,7 +82,9 @@ export default function MidNav(props) {
         setMidnavTitle("Admin");
         break;
       case 3:
-        setMidNavContent(<Tools_MidNav />);
+        setMidNavContent(
+          <Tools_MidNav setRightNav={setRightNav} activeVak={activeVak} />
+        );
         setMidnavTitle("Tools");
         break;
       case 4:

@@ -42,6 +42,13 @@
   font-weight: 400;
 }
 
+.weekday__active {
+  background-image: url("../public/LIVE.svg");
+  background-repeat: no-repeat;
+  background-position: 97% 90%;
+  background-size: 30%;
+}
+
 .weekday__active * {
   color: var(--red500);
 }
@@ -59,6 +66,7 @@
 }
 
 .weekday__container {
+  max-width: calc((100vw - 342px) / 6);
   border-left: 2px solid black;
   border-bottom: 2px solid black;
   grid-area: auto/auto/span 2 / span 1;
@@ -202,6 +210,10 @@
 
 .month__itemActive {
   color: var(--red500);
+  background-image: url("../public/LIVE.svg");
+  background-repeat: no-repeat;
+  background-position: 95% center;
+  background-size: 30%;
 }
 
 .month__item {

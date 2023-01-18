@@ -11,7 +11,7 @@ import MonthOverview from "../rightNav/monthOverview";
 import AdminRightNav from "../rightNav/adminRightNav";
 import AutoAdmin from "../rightNav/autoAdmin";
 
-import ToolsRightNav from "../rightNav/toolsRightNav";
+import Uitlenen from "../rightNav/uitlenen";
 import ContactForm from "../rightNav/contactForm";
 import Quiz from "../rightNav/quiz";
 import ExternalWebsite from "../rightNav/externalWebsite";
@@ -43,10 +43,7 @@ export default function RightNav(props) {
   function roosterRightNavSwitch() {
     if (props.inhoud % 2 == 0) {
       setRightNavContent(<WeekOverview navigate={navigate} />);
-    }
-
-    // if the number is odd
-    else {
+    } else {
       setRightNavContent(<MonthOverview navigate={navigate} />);
     }
   }
@@ -58,7 +55,10 @@ export default function RightNav(props) {
   function toolsRightNavSwitch() {
     switch (props.inhoud) {
       case 0:
-        setRightNavContent(<ToolsRightNav />);
+        setRightNavContent(<Uitlenen navigate={navigate} />);
+        break;
+      case 1:
+        setRightNavContent(<Uitlenen navigate={navigate} />);
         break;
       //Componenten voor tools
       /*
@@ -79,7 +79,7 @@ case 1:
 
   function AccountRightNavSwitch() {
     switch (props.inhoud) {
-      case 0:
+      case 1:
         setRightNavContent(<AccountRightNav />);
         break;
 
@@ -108,6 +108,7 @@ case 1:
       default:
         break;
     }
+    console.log(props.inhoud, props.section);
   }, [props.inhoud, props.section]);
 
   return <>{rightNavContent}</>;

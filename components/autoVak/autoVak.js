@@ -11,6 +11,8 @@ export default function AutoVak(props) {
   const [lessenAPIResult, setLessenAPIResult] = useState("");
   const [vakContentAPIResult, setVakContentAPIResult] = useState("");
 
+  let staticVak = "";
+
   let buttonPreUseState = [];
   const [buttonAnimation, setButtonAnimation] = useState("");
   function copyEmail(e, i) {
@@ -86,7 +88,7 @@ export default function AutoVak(props) {
 
   const VakContentOphalen = async () => {
     const loginData = {
-      bundle: 1,
+      bundle: staticVak,
     };
     const JSONLoginData = JSON.stringify(loginData);
 
@@ -107,6 +109,11 @@ export default function AutoVak(props) {
 
   useEffect(() => {
     VakInfoOphalen();
+    if (props.vak == 1) {
+      staticVak = 2;
+    } else {
+      staticVak = 1;
+    }
     VakContentOphalen();
   }, [props.vak, buttonAnimation]);
   //damn

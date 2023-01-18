@@ -2,6 +2,7 @@ import styles from "../../styles/rooster_item.module.css";
 
 export default function WeekRooster_item(props) {
   let vak = props.data;
+  console.log(vak);
   vak.hour_start = vak.hour_start.slice(0, 5);
   vak.hour_end = vak.hour_end.slice(0, 5);
   vak.autoStyle = {

@@ -64,6 +64,21 @@ export default function Vak_MidNav(props) {
     return props.activeVak;
   }
 
+  function getVakIcon(name) {
+    let letter = name.slice(0, 1);
+    let number = name.slice(-1);
+    let srcComp = "icon" + letter + "blk.svg";
+    //return <img src={srcComp} className={styles.vakken__img} />;
+    return (
+      <>
+        <div className={styles.vakken__imgContainer}>
+          <img src={srcComp} className={styles.vakken__img} />
+        </div>
+        {/*<p className={styles.vakken__number}>{number}</p>*/}
+      </>
+    );
+  }
+
   let vakCounter = 1;
   function mapTraject() {
     if (!trajectData) {
@@ -82,10 +97,10 @@ export default function Vak_MidNav(props) {
                 console.log(props.activeVak);
               }}
             >
+              <div className={styles.vakken__icon}>
+                {getVakIcon(vak.vak_name)}
+              </div>
               <span className={styles.vakken__title}>{vak.vak_name}</span>
-              <div className={styles.vakken__live}></div>
-              <div className={styles.vakken__notificationCounter}>0</div>
-              <div className={styles.vakken__deadlineCounter}>0</div>
             </li>
           );
         })
